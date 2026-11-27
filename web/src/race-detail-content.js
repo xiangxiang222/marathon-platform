@@ -14,9 +14,9 @@ function readable(value) {
   }
   return String(value);
 }
-function localMoment(value) {
+function localMoment(value, withZone = true) {
   const text = readable(value);
-  if (/^\d{4}-\d{2}-\d{2}T/.test(text) && Number.isFinite(Date.parse(text))) return new Date(Date.parse(text) + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + "（北京时间）";
+  if (/^\d{4}-\d{2}-\d{2}T/.test(text) && Number.isFinite(Date.parse(text))) return new Date(Date.parse(text) + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + (withZone ? "（北京时间）" : "");
   return text;
 }
 function quantity(value, unit) {
@@ -96,4 +96,4 @@ function qrHint(race) {
   return (channel ? channel + " · " : "") + (closed ? "报名已关闭，二维码可查看本届报名信息。" : "点击预览，长按或扫码打开本届报名页。");
 }
 
-export { groupCards, guideSource, sheetCaption, guideLayout, registrationLabel, qrAvailable, qrHint };
+export { groupCards, guideSource, sheetCaption, guideLayout, localMoment, registrationLabel, qrAvailable, qrHint };

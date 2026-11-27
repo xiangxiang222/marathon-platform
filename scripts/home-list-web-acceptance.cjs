@@ -38,6 +38,7 @@ async function main() {
   await context.addInitScript(token => { localStorage.setItem('marathon_token', token); localStorage.setItem('marathon_name', '合成跑者'); }, token);
   await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const page = await context.newPage();
+  await page.clock.install();
   page.setDefaultTimeout(12000);
   page.on('pageerror', error => report.errors.push(error.message));
 
@@ -59,6 +60,14 @@ async function main() {
   db.prepare('INSERT INTO race_follows(user_id,race_id,created_at) VALUES(?,?,?)').run(userId,'home-half',stamp);
   const home = origin+'/marathon/';
   const listing = page.locator('.home-results');
+  const finder = page.locator('.race-finder');
+  const submitFilters = () => finder.getByRole('button', {name:'查找比赛', exact:true}).click();
+  async function editFilters(run, expected={}) {
+    const before = raceRequests.length;
+    await run();
+    assert.equal(raceRequests.length,before,'editing conditions does not query');
+    return action(submitFilters,expected);
+  }
   const raceRequests=[];
   page.on('request',request=>{const u=new URL(request.url()); if(u.pathname==='/marathon/api/races')raceRequests.push(Object.fromEntries(u.searchParams));});
   async function action(run, expected={}) {
@@ -73,17 +82,17 @@ async function main() {
     return {data,query};
   }
   const drawer=page.locator('.home-filter-sheet[open]');
-  async function openFilter(name){await listing.getByRole('button',{name,exact:true}).click();await drawer.waitFor();}
+  async function openFilter(name){await finder.getByRole('button',{name,exact:true}).click();await drawer.waitFor();}
   async function more(){await openFilter('更多筛选');await page.locator('.status-sheet').waitFor();}
-  async function picked(run,expected={}){const result=await action(run,expected);await drawer.waitFor({state:'hidden'});return result;}
+  async function picked(run,expected={}){return editFilters(async()=>{await run();await drawer.waitFor({state:'hidden'});},expected);}
   async function distance(value,expected={}){await more();return picked(()=>page.getByRole('navigation',{name:'比赛距离',exact:true}).getByRole('button',{name:value,exact:true}).click(),expected);}
   async function format(value,expected={}){await more();return picked(()=>page.getByRole('navigation',{name:'赛事形式',exact:true}).getByRole('button',{name:value,exact:true}).click(),expected);}
   async function publicStatus(value,expected={}){await more();return picked(()=>page.locator('.status-sheet').getByRole('button',{name:value,exact:true}).click(),expected);}
   async function chooseCity(province,city,expected={}){await openFilter('比赛地点');await page.getByRole('navigation',{name:'省份导航'}).getByRole('button',{name:province,exact:true}).click();return picked(()=>page.locator('.cities').getByRole('button',{name:city,exact:true}).click(),expected);}
   async function chooseMonth(year,month,expected={}){await openFilter('比赛时间');await page.getByRole('navigation',{name:'年份导航'}).getByRole('button',{name:year+'年',exact:true}).click();return picked(()=>page.locator('.months').getByRole('button',{name:month+'月',exact:true}).click(),expected);}
   async function reset(){
-    const button=listing.getByRole('button',{name:/^(清空筛选|清空|重置筛选|重置)$/});
-    if(await button.count())return action(()=>button.first().click(),{status:'upcoming'});
+    const button=finder.getByRole('button',{name:/^(清空筛选|清空|重置筛选|重置)$/});
+    if(await button.count())return editFilters(()=>button.first().click(),{status:'upcoming'});
     await page.goto(home,{waitUntil:'networkidle'});
   }
   async function shot(name,width){
@@ -127,7 +136,7 @@ async function main() {
       const focus=await dialog.evaluate(element=>({contained:element.contains(document.activeElement),active:document.activeElement?.outerHTML.slice(0,240),modal:element.matches(':modal')}));
       assert.equal(focus.contained,true,'Tab focus stays inside the modal: '+JSON.stringify({key,...focus}));
     }
-    await listing.getByRole('button',{name:'更多筛选',exact:true}).evaluate(element=>element.focus());
+    await finder.getByRole('button',{name:'更多筛选',exact:true}).evaluate(element=>element.focus());
     assert.equal(await dialog.evaluate(element=>element.contains(document.activeElement)),true,'Inert background cannot receive focus while the modal is open');
     const filename='home-list-drawer-'+width+'.png';await dialog.screenshot({path:path.join(out,filename)});
     report.views.push({name:'home-list-drawer-geometry',screenshot:filename,...metrics});
@@ -140,9 +149,103 @@ async function main() {
     assert.ok((await row.innerText()).includes('已报名'));assert.ok((await row.innerText()).includes('报名中'));
     assert.equal((await read('/me')).plans.length,3);
   });
-  await check('Track type and independent distance options apply immediately and remain selected',async()=>{
+  const reminders = entries.slice(0, 2).map(([id, name], index) => ({ race: { id, name }, hit: { key: 'deadline', reason: index ? '明天截止' : '今日截止' } }));
+  const reminderBanner = page.locator('.deadline-banner');
+  const reminderLink = reminderBanner.locator('.deadline-copy');
+  const reminderNext = reminderBanner.getByRole('button', { name: '查看下一条提醒' });
+  const summary = listing.locator('.results-summary');
+  const errors = [];
+  async function checkHome(name, run) {
+    try { await check(name, run); }
+    catch (error) { errors.push(name + ': ' + error.message); }
+  }
+  async function reminderFixture(rows) {
+    await page.unroute('**/api/reminders');
+    await page.route('**/api/reminders', route => route.fulfill({ json: { mine: [], reminders: rows } }));
+    const response = page.waitForResponse('**/api/reminders');
+    await page.reload({ waitUntil: 'networkidle' });
+    assert.equal((await (await response).json()).reminders.length, rows.length, 'reminder fixture response reached the app');
+    if (rows.length) await reminderLink.waitFor();
+    await listing.locator('.race-card-shell').first().waitFor();
+  }
+  await reminderFixture(reminders);
+  await checkHome('Home places race services and results before supplementary content', async () => {
+    const sections = await page.locator('.home-shortcuts,.deadline-banner,.home-results,.home-discover,.home-catalog').evaluateAll(nodes => nodes.map(node => node.className));
+    assert.deepEqual(sections, ['home-shortcuts', 'deadline-banner', 'home-results', 'home-discover', 'home-catalog']);
+    assert.deepEqual(await page.locator('.home-shortcuts a').evaluateAll(links => links.map(link => new URL(link.href).pathname)), ['/marathon/calendar','/marathon/radar','/marathon/clubs','/marathon/news']);
+    const calendar = page.locator('.discover-calendar');
+    assert.equal(await calendar.getAttribute('href'), '/marathon/calendar');
+    assert.ok(!(await calendar.textContent()).includes(entries[0][1]), 'calendar teaser must not mirror the first filtered result');
+  });
+  await checkHome('Multiple reminders change by choice and retain the selected event link without refetching', async () => {
+    assert.equal(await reminderLink.getAttribute('href'), '/marathon/races/home-full');
+    assert.match(await reminderLink.innerText(), /今日截止/);
+    await page.clock.fastForward(5500);
+    assert.equal(await reminderLink.getAttribute('href'), '/marathon/races/home-full', 'idle time does not advance the reminder');
+    const before = raceRequests.length;
+    await reminderNext.click();
+    assert.equal(await reminderLink.getAttribute('href'), '/marathon/races/home-half');
+    assert.match(await reminderLink.innerText(), /明天截止/);
+    await reminderNext.click();
+    assert.equal(await reminderLink.getAttribute('href'), '/marathon/races/home-full');
+    assert.equal(raceRequests.length, before);
+  });
+  await checkHome('A lone reminder has only a real detail link and no placeholder switch', async () => {
+    await reminderFixture(reminders.slice(0, 1));
+    assert.equal(await reminderBanner.getByRole('button').count(), 0);
+    assert.equal(await reminderLink.getAttribute('href'), '/marathon/races/home-full');
+    await reminderLink.click();
+    await page.waitForURL('**/races/home-full');
+  });
+  await checkHome('The result summary updates on submit only and keyword results hide supplemental panels', async () => {
+    await page.goto(home, { waitUntil: 'networkidle' });
+    await chooseCity('北京','北京全市',{city:'北京'});
+    assert.equal(await summary.count(), 1, 'submitted filters have a result summary');
+    assert.match(await summary.innerText(), /北京/);
+    await openFilter('比赛地点');
+    await page.getByRole('navigation',{name:'省份导航'}).getByRole('button',{name:'浙江',exact:true}).click();
+    await page.locator('.cities').getByRole('button',{name:'杭州',exact:true}).click();
+    assert.match(await summary.innerText(), /北京/);
+    await action(submitFilters,{city:'杭州'});
+    assert.match(await summary.innerText(), /杭州/);
+    await finder.getByRole('button',{name:'搜赛事',exact:true}).click();
+    const search = finder.getByRole('textbox');
+    await search.fill('往届马拉松');
+    await action(() => search.press('Enter'),{q:'往届马拉松',status:'all'});
+    await search.fill('下一次输入');
+    assert.match(await summary.innerText(), /往届马拉松/);
+    assert.equal(await page.locator('.home-shortcuts,.deadline-banner,.home-discover,.home-catalog').count(), 0);
+    assert.equal(await listing.locator('.race-card-shell').count(), 1);
+  });
+  await checkHome('Pagination preserves the submitted filters and keeps results in view on a narrow screen', async () => {
+    const fixtureIds = Array.from({ length: 41 }, (_, index) => 'home-paged-' + index);
+    db.transaction(() => {
+      for (const id of fixtureIds) insert.run(id, '分页赛事实例 ' + id, '北京', '北京', 'full', yr + '-05-10', future, '合成起点', 'road', 'offline');
+    })();
+    try {
+      await page.setViewportSize({ width: 320, height: 780 });
+      await page.goto(home, { waitUntil: 'networkidle' });
+      const first = await chooseCity('北京','北京全市',{city:'北京'});
+      assert.ok(first.data.pages > 1, 'pagination fixture must include a second page');
+      const pager = listing.getByRole('navigation', { name: '翻页' });
+      const targets = await pager.getByRole('button').evaluateAll(buttons => buttons.map(button => ({ width: button.offsetWidth, height: button.offsetHeight })));
+      assert.ok(targets.every(({ width, height }) => width >= 44 && height >= 44), 'every paging control has a 44px touch target');
+      const next = await action(() => pager.getByRole('button', { name: '下一页', exact: true }).click(), { city: '北京', status: 'upcoming', page: '2' });
+      assert.equal(next.data.page, 2);
+      assert.equal(await pager.locator('[aria-current="page"]').innerText(), '2');
+      assert.match(await summary.innerText(), /北京/);
+      assert.equal(await page.locator('#race-results-title').evaluate(title => document.activeElement === title), true);
+    } finally {
+      db.prepare("DELETE FROM races WHERE id LIKE 'home-paged-%'").run();
+      await page.setViewportSize({ width: 390, height: 1000 });
+    }
+  });
+  assert.deepEqual(errors, [], 'new home services and results behavior');
+  await page.unroute('**/api/reminders');
+  await page.goto(home, { waitUntil: 'networkidle' });
+  await check('Track type and independent distance options are submitted together and remain selected',async()=>{
     const nav=page.getByRole('navigation',{name:'赛事类型'});
-    let r=await action(()=>nav.getByRole('button',{name:'越野赛',exact:true}).click(),{kind:'trail'});assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);
+    let r=await editFilters(()=>nav.getByRole('button',{name:'越野赛',exact:true}).click(),{kind:'trail'});assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);
     r=await distance('马拉松',{kind:'trail',distance:'full'});assert.deepEqual(r.data.races,[],'distance must not silently replace the track type');
     await more();assert.equal(await page.getByRole('navigation',{name:'比赛距离'}).getByRole('button',{name:'马拉松',exact:true}).getAttribute('aria-pressed'),'true');
     r=await picked(()=>page.getByRole('navigation',{name:'比赛距离'}).getByRole('button',{name:'半程马拉松',exact:true}).click(),{kind:'trail',distance:'half'});assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);
@@ -150,7 +253,7 @@ async function main() {
     r=await distance('不限距离',{kind:'trail'});assert.ok(!r.query.distance);assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);
     await reset();
   });
-  await check('Province and year only browse; city and month apply, close and reopen with their selected values',async()=>{
+  await check('Province and year only browse; city and month are saved to the card and submitted',async()=>{
     await openFilter('比赛地点');const before=raceRequests.length;
     assert.equal(await page.getByRole('navigation',{name:'省份导航'}).getByRole('button',{name:'全国',exact:true}).getAttribute('aria-pressed'),'true','no city starts with nationwide navigation');
     for(const city of ['北京','上海','杭州','成都'])assert.equal(await page.locator('.cities').getByRole('button',{name:city,exact:true}).count(),1,'nationwide grid includes API city '+city);
@@ -181,7 +284,7 @@ async function main() {
     await shot('home-list-time',390);
     r=await picked(()=>page.locator('.months').getByRole('button',{name:'不限时间',exact:true}).click(),{city:'北京'});assert.ok(!r.query.month);await reset();
   });
-  await check('Format and public state each apply once without a confirmation step; all states includes past races',async()=>{
+  await check('Format and public state use the card submit; all states includes past races',async()=>{
     let r=await format('线上赛',{meet:'online'});assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);
     await more();assert.equal(await page.getByRole('navigation',{name:'赛事形式'}).getByRole('button',{name:'线上赛',exact:true}).getAttribute('aria-pressed'),'true');assert.equal(await drawer.getByRole('button',{name:/^(确认|查看赛事)$/}).count(),0);
     const count=raceRequests.length;await page.getByRole('button',{name:'关闭筛选',exact:true}).click();assert.equal(raceRequests.length,count,'closing is not an extra apply action');
@@ -190,35 +293,38 @@ async function main() {
     r=await publicStatus('全部状态',{status:'all'});assert.equal(r.data.races.length,6);assert.ok(r.data.races.some(row=>row.id==='home-past'));
     await more();assert.equal(await drawer.getByRole('button',{name:'全部状态',exact:true}).getAttribute('aria-pressed'),'true');await page.getByRole('button',{name:'关闭筛选',exact:true}).click();await reset();
   });
-  await check('Every selected condition has an independent clear action and filter updates preserve the page position',async()=>{
+  await check('Every selected condition has its own clear action and updates only on submit',async()=>{
     const nav=page.getByRole('navigation',{name:'赛事类型'});
     await listing.evaluate(el=>el.scrollIntoView({block:'start'}));
-    await action(()=>nav.getByRole('button',{name:'路跑',exact:true}).click(),{kind:'road'});
+    await editFilters(()=>nav.getByRole('button',{name:'路跑',exact:true}).click(),{kind:'road'});
     await chooseCity('北京','北京全市',{kind:'road',city:'北京'});
     await chooseMonth(yr,3,{kind:'road',city:'北京',month:yr+'-03'});
     await distance('马拉松',{kind:'road',city:'北京',month:yr+'-03',distance:'full'});
     await format('线下赛',{kind:'road',city:'北京',month:yr+'-03',distance:'full',meet:'offline'});
     await publicStatus('报名中',{kind:'road',city:'北京',month:yr+'-03',distance:'full',meet:'offline',status:'open'});
-    assert.equal(await listing.locator('.filter-tag').count(),6);
+    assert.equal(await finder.locator('.filter-tag').count(),6);
     await shot('home-list-selected',390);
-    await listing.evaluate(el=>el.scrollIntoView({block:'start'}));const top=await page.evaluate(()=>scrollY);assert.ok(top>100,'exercise a scrolled page');
     await more();await picked(()=>page.getByRole('navigation',{name:'赛事形式'}).getByRole('button',{name:'线上赛',exact:true}).click(),{kind:'road',city:'北京',month:yr+'-03',distance:'full',meet:'online',status:'open'});
-    assert.ok(Math.abs(await page.evaluate(()=>scrollY)-top)<2,'applying a filter must preserve scrollY even when results become empty');
     const expected={kind:'road',city:'北京',month:yr+'-03',distance:'full',meet:'online',status:'open'};
     for(const [category,label,key] of [['距离','马拉松','distance'],['时间',yr+'年3月','month'],['地点','北京','city'],['类型','路跑','kind'],['形式','线上赛','meet'],['状态','报名中','status']]){
       delete expected[key];if(key==='status')expected.status='upcoming';
-      const before=await page.evaluate(()=>scrollY);
-      const result=await action(()=>listing.getByRole('button',{name:'取消'+category+'：'+label,exact:true}).click(),expected);
+      const result=await editFilters(()=>finder.getByRole('button',{name:'取消'+category+'：'+label,exact:true}).click(),expected);
       if(key!=='status')assert.ok(!result.query[key],key+' alone is removed');
-      assert.ok(Math.abs(await page.evaluate(()=>scrollY)-before)<2,'clearing '+key+' preserves position');
     }
-    assert.equal(await listing.locator('.filter-tag').count(),0);assert.equal(await listing.getByRole('button',{name:'清空筛选',exact:true}).count(),0);
+    assert.equal(await finder.locator('.filter-tag').count(),0);assert.equal(await finder.getByRole('button',{name:'清空筛选',exact:true}).count(),0);
   });
-  await check('Search ignores active filters without losing them after clearing the query',async()=>{
+  await check('Search ignores active filters; switching back preserves and distinguishes both drafts',async()=>{
     await chooseCity('北京','北京全市',{city:'北京'});
+    await finder.getByRole('button',{name:'搜赛事',exact:true}).click();
     const search=page.getByRole('textbox',{name:'搜索赛事名称或城市',exact:true});
-    const r=await action(()=>search.fill('云上越野'),{q:'云上越野',status:'all'});assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);assert.ok(!r.query.city&&!r.query.kind&&!r.query.month&&!r.query.meet&&!r.query.distance);
-    await action(()=>search.fill(''),{city:'北京'});await reset();
+    await search.fill('云上越野');
+    const r=await action(()=>search.press('Enter'),{q:'云上越野',status:'all'});assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);assert.ok(!r.query.city&&!r.query.kind&&!r.query.month&&!r.query.meet&&!r.query.distance);
+    await finder.getByRole('button',{name:'按条件找赛',exact:true}).click();
+    assert.match(await finder.getByRole('button',{name:'比赛地点',exact:true}).innerText(),/北京/);
+    await finder.getByRole('button',{name:'搜赛事',exact:true}).click();
+    assert.equal(await search.inputValue(),'云上越野');
+    await finder.getByRole('button',{name:'按条件找赛',exact:true}).click();
+    await reset();
   });
   await check('Following remains independent from the card navigation and personal plan',async()=>{
     const row=listing.locator('.race-card-shell').filter({hasText:entries[3][1]});
@@ -243,7 +349,7 @@ async function main() {
       await more();await auditDialog(width);await shot('home-list-filters',width);
       await page.getByRole('button',{name:/关闭筛选|关闭/}).click();
       await page.waitForFunction(value=>!document.querySelector('.home-filter-sheet')&&document.body.style.overflow===value,originalOverflow);
-      assert.equal(await listing.getByRole('button',{name:'更多筛选',exact:true}).evaluate(element=>document.activeElement===element),true,'Closing restores focus to the filter trigger');
+      assert.equal(await finder.getByRole('button',{name:'更多筛选',exact:true}).evaluate(element=>document.activeElement===element),true,'Closing restores focus to the filter trigger');
       for(const name of ['比赛地点','比赛时间']){
         await openFilter(name);await auditDialog(width);
         for(const option of await drawer.locator('button').all()){
@@ -253,8 +359,11 @@ async function main() {
       }
       await more();await page.keyboard.press('Escape');
       await page.waitForFunction(value=>!document.querySelector('.home-filter-sheet')&&document.body.style.overflow===value,originalOverflow);
-      assert.equal(await listing.getByRole('button',{name:'更多筛选',exact:true}).evaluate(element=>document.activeElement===element),true,'Escape restores focus to the filter trigger');
-      await action(()=>page.getByRole('textbox',{name:'搜索赛事名称或城市',exact:true}).fill('云上越野'),{q:'云上越野'});await shot('home-list-search',width);
+      assert.equal(await finder.getByRole('button',{name:'更多筛选',exact:true}).evaluate(element=>document.activeElement===element),true,'Escape restores focus to the filter trigger');
+      await finder.getByRole('button',{name:'搜赛事',exact:true}).click();
+      const search=page.getByRole('textbox',{name:'搜索赛事名称或城市',exact:true});
+      await search.fill('云上越野');
+      await action(()=>search.press('Enter'),{q:'云上越野'});await shot('home-list-search',width);
     }
     for(const [width,height] of [[320,780],[390,844]]){
       await page.setViewportSize({width,height});await page.goto(home,{waitUntil:'networkidle'});await more();

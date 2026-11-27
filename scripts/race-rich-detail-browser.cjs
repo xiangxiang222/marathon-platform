@@ -67,7 +67,7 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
   const png = await qr.toBuffer('https://reg.zuicool.com/verified-fixture-entry', { margin: 4, width: 288 });
   await ctx.route('**/marathon/api/**', async route => {
     const url = new URL(route.request().url());
-    if ((localApi || process.env.RACE_RICH_API) && (url.pathname.includes('/race-sheets/') || url.pathname.endsWith('/signup-qr'))) {
+    if (!url.pathname.endsWith('/race-service-fixture/signup-qr') && (localApi || process.env.RACE_RICH_API) && (url.pathname.includes('/race-sheets/') || url.pathname.endsWith('/signup-qr'))) {
       const remote = new URL(url.pathname + url.search, localApi || new URL(process.env.RACE_RICH_API).origin);
       const response = await fetch(remote); return route.fulfill({ status: response.status, contentType: response.headers.get('content-type') || 'image/png', body: Buffer.from(await response.arrayBuffer()) });
     }
@@ -82,6 +82,118 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
     await page.screenshot({ path: path.join(out, name + '.png'), fullPage: true });
     report.views.push({ name, ...metrics });
   }
+  const richPayload = current;
+  const serviceRace = {
+    ...sample,
+    id: 'race-service-fixture',
+    name: '2035 北京城市马拉松暨国际公路跑全民健身邀请赛长名称展示',
+    province: '北京', city: '北京', district: '', place: '奥林匹克公园',
+    raceDate: '2035-11-04', raceDateLabel: '11月4日 周日', raceEndDate: '',
+    eventUrl: 'https://event.example.test/marathon', officialUrl: '',
+    coverSheet: null, details: {}, guideText: '', pickup: '',
+    registrationStatus: '', registrationLabel: '', regStatus: '', open: false,
+    regStart: '', deadline: '', signupQrAvailable: false, signupQrUrl: '', signupHost: '',
+    nodes: [], links: []
+  };
+  const serviceUrl = origin + '/marathon/races/' + serviceRace.id;
+  const service = page.getByRole('region', { name: '参赛服务', exact: true });
+  const primary = service.locator('.race-service-primary');
+  const signup = { key: 'signup', url: 'https://entry.example.test/signup' };
+  const result = { key: 'result', url: 'https://event.example.test/results' };
+  const deadline = { key: 'deadline', label: '报名截止', at: '2035-10-19 18:00', past: false };
+  async function openService(fields = {}, query = '') {
+    current = { race: { ...serviceRace, ...fields } };
+    await page.goto(serviceUrl + query, { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#race-title').textContent(), serviceRace.name, 'the race fixture must render before checking new behavior');
+  }
+  const serviceFailures = [];
+  async function serviceCheck(name, check) {
+    try { await check(); report.checks.push(name); }
+    catch (error) { serviceFailures.push(name + '\n' + error.message); }
+  }
+  await page.clock.setFixedTime(new Date('2035-10-16T02:00:00Z'));
+  await serviceCheck('Open registration shows one official signup action, facts and the next deadline', async () => {
+    await openService({ registrationStatus: 'open', regStatus: '报名中', open: true, deadline: deadline.at, links: [signup], nodes: [deadline] });
+    assert.equal(await primary.count(), 1, 'the service card must have one primary action');
+    assert.equal(await primary.getAttribute('href'), signup.url);
+    assert.equal(await primary.getAttribute('target'), '_blank');
+    assert.match(await service.innerText(), /报名中[\s\S]*11月4日[\s\S]*北京[\s\S]*报名截止[\s\S]*2035-10-19 18:00/);
+    assert.equal(await service.getByRole('link', { name: '官方入口', exact: true }).getAttribute('href'), serviceRace.eventUrl);
+  });
+  await serviceCheck('QR-only registration opens the official QR preview without a signup link', async () => {
+    await openService({ registrationStatus: 'open', regStatus: '报名中', open: true, deadline: deadline.at, signupQrAvailable: true, nodes: [deadline] });
+    assert.equal(await primary.count(), 1, 'QR-only registration must have one primary action');
+    assert.match(await primary.textContent(), /报名二维码/);
+    assert.equal(await primary.evaluate(element => element.tagName), 'BUTTON');
+    await primary.click();
+    await page.locator('dialog[open]').waitFor();
+    assert.match(await page.locator('dialog[open] img').getAttribute('src'), /race-service-fixture\/signup-qr$/);
+    await page.getByRole('button', { name: '关闭图片预览', exact: true }).click();
+  });
+  await serviceCheck('After registration closes, the pickup action opens the existing guide at pickup', async () => {
+    const pickup = '10月20日 10:00–17:00 在奥林匹克公园北门领取参赛物品';
+    await openService({ registrationStatus: 'closed', regStatus: '待开赛', deadline: '2035-10-15', pickup, links: [signup], nodes: [{ key: 'pickup', label: '参赛包领取', at: '2035-10-20 10:00', past: false }] });
+    assert.equal(await primary.count(), 1, 'published pickup information must have one primary action');
+    assert.match(await primary.textContent(), /领物/);
+    await primary.click();
+    assert.equal(await page.getByRole('tab', { name: '参赛指南', exact: true }).getAttribute('aria-selected'), 'true');
+    assert.match(await page.locator('#guide-pickup').innerText(), /奥林匹克公园北门/);
+  });
+  await serviceCheck('A completed race makes the official results link primary', async () => {
+    await openService({ raceDate: '2035-10-12', raceDateLabel: '10月12日', registrationStatus: 'closed', links: [signup, result] });
+    assert.equal(await primary.count(), 1, 'a completed race with published results must have one primary action');
+    assert.equal(await primary.getAttribute('href'), result.url);
+    assert.match(await service.innerText(), /已结束/);
+  });
+  await serviceCheck('The earliest future node is displayed in Beijing time and verified deadlines replace stale raw dates', async () => {
+    const draw = { key: 'draw', label: '出签', at: '2035-10-16T04:00:00Z', past: false };
+    await openService({ registrationStatus: 'open', open: true, details: { registration: { verified: true, closesAt: '2035-10-16T10:00:00Z' } }, nodes: [deadline, draw], nextNode: deadline });
+    const next = service.locator('.race-service-next');
+    assert.match(await next.innerText(), /出签[\s\S]*2035-10-16 12:00/);
+    await openService({ registrationStatus: 'open', open: true, details: { registration: { verified: true, closesAt: '2035-10-16T10:00:00Z' } }, nodes: [deadline], nextNode: deadline });
+    assert.match(await next.innerText(), /报名截止[\s\S]*2035-10-16 18:00/);
+  });
+  await serviceCheck('Missing or invalid official details show no misleading primary action', async () => {
+    await openService({ eventUrl: '', links: [{ ...signup, url: 'http://entry.example.test/signup' }] });
+    assert.equal(await service.count(), 1, 'the service card must render even without official actions');
+    assert.equal(await primary.count(), 0);
+    assert.match(await service.innerText(), /未录入|暂未公布/);
+    await openService({ registrationStatus: 'cancelled', signupQrAvailable: true, pickup: '已失效的领物安排', links: [signup, result] });
+    assert.equal(await primary.count(), 0);
+    assert.match(await service.innerText(), /赛事已取消/);
+    await openService({ registrationStatus: 'open', details: { registration: { entranceVerified: false } }, signupQrAvailable: true, links: [signup] });
+    assert.equal(await primary.count(), 0);
+    assert.equal(await page.locator('.signup-qr-preview').count(), 0);
+    await openService({ registrationStatus: 'closed', pickup: '领物安排待公布' });
+    assert.equal(await primary.count(), 0);
+    assert.match(await service.innerText(), /领物安排尚未录入/);
+  });
+  await serviceCheck('Follow and participation plan are distinct and keep their guest sign-in return routes', async () => {
+    await openService();
+    const follow = service.getByRole('button', { name: '关注' + serviceRace.name, exact: true });
+    assert.equal(await follow.count(), 1, 'the service card must expose a separate follow action');
+    await follow.click();
+    await page.waitForURL('**/marathon/mine');
+    assert.equal(await page.evaluate(() => localStorage.getItem('marathon_return_after_login')), '/races/' + serviceRace.id + '?follow=1');
+    await openService();
+    const plan = service.getByRole('button', { name: '参赛计划', exact: true });
+    await plan.click();
+    await page.waitForURL('**/marathon/mine');
+    assert.equal(await page.evaluate(() => localStorage.getItem('marathon_return_after_login')), '/races/' + serviceRace.id + '?plan=1');
+  });
+  await serviceCheck('Signed-in participation shortcut opens the editor even from another race tab', async () => {
+    await page.evaluate(() => localStorage.setItem('marathon_token', 'fixture-runner'));
+    try {
+      await openService({}, '?tab=result');
+      await service.getByRole('button', { name: '参赛计划', exact: true }).click();
+      await page.locator('#race-plan-editor').waitFor();
+      assert.equal(await page.getByRole('tab', { name: '赛事信息', exact: true }).getAttribute('aria-selected'), 'true');
+      assert.equal(page.url(), serviceUrl + '?tab=result');
+    } finally { await page.evaluate(() => localStorage.removeItem('marathon_token')); }
+  });
+  assert.deepEqual(serviceFailures, [], 'race service browser scenarios');
+  await page.clock.setFixedTime(new Date());
+  current = richPayload;
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto(origin + '/marathon/races/' + encodeURIComponent(current.race.id), { waitUntil: 'networkidle' });

@@ -40,6 +40,103 @@ function detailFixture(race, auth = true, now) {
   const page = { ...definition, data: JSON.parse(JSON.stringify(definition.data)), setData(patch, done) { Object.assign(this.data, patch); if (done) done(); } };
   return { page, app, data, requests, scrolls, clipboard, previews, storage, navigation };
 }
+async function checkRaceService() {
+  const now = '2026-11-17T12:00:00+08:00';
+  const route = { id: baseRace.id };
+  const open = { ...baseRace, raceDate: '2026-11-21', regStart: '2026-11-15', deadline: '2026-11-18T18:00:00+08:00', registrationStatus: 'open', open: true };
+  const signupLink = { key: 'signup', url: 'https://official.example/entry' };
+  const resultLink = { key: 'result', url: 'https://official.example/results' };
+  const qrUrl = 'https://official.example/entry.png';
+  const upcoming = { ...open, regStatus: '待开赛', registrationStatus: 'closed', open: false, deadline: '2026-11-16' };
+  const failures = [];
+  const check = async (name, race, verify) => {
+    const f = detailFixture(race, false, now);
+    f.page.onLoad(route);
+    assert.equal(await f.page.load(), true, 'fixture race loaded successfully');
+    try { await verify(f); }
+    catch (error) { failures.push(new Error(name + ': ' + error.message, { cause: error })); }
+  };
+  await check('open registration with official link', { ...open, links: [signupLink] }, f => {
+    assert.equal(f.page.data.serviceAction?.kind, 'link', 'the official signup link should be the primary action');
+    assert.equal(f.page.data.serviceAction.label, '复制官方报名链接');
+    assert.equal(f.page.data.publicStatus, '报名中');
+    assert.equal(f.page.data.locationText, open.city);
+    assert.match(f.page.data.phaseTitle, /报名截止.*2026-11-18 18:00/);
+    f.page.openServiceAction();
+    assert.deepEqual(f.clipboard, [signupLink.url]);
+    assert.equal(f.page.data.planOpen, false, 'official action should leave the separate plan control alone');
+    assert.equal(f.page.data.myStatus, '');
+    assert.equal(f.page.data.following, false);
+    assert.equal(f.requests.some(request => request.method !== 'GET'), false);
+    f.page.loginForPlan();
+    assert.equal(f.storage.marathon_return_after_login, '/pages/race/race?id=sample-race&plan=1');
+    f.page.toggleFollow();
+    assert.equal(f.storage.marathon_return_after_login, '/pages/race/race?id=sample-race&follow=1');
+  });
+  await check('QR-only registration', { ...open, signupQrAvailable: true, signupQrUrl: qrUrl }, f => {
+    assert.equal(f.page.data.serviceAction?.kind, 'qr', 'a validated QR-only entry should supply the primary action');
+    f.page.openServiceAction();
+    assert.equal(f.previews[0]?.current, qrUrl);
+    f.page.signupQrError();
+    f.page.openServiceAction();
+    assert.equal(f.previews.length, 1, 'a failed QR does not open until it can be loaded again');
+    f.page.retrySignupQr();
+    f.page.openServiceAction();
+    assert.equal(f.previews[1]?.current, qrUrl);
+    assert.deepEqual(f.clipboard, []);
+  });
+  await check('verified cutoff overrides a stale early-bird node and label', {
+    ...open, deadline: '2026-11-17T11:00:00+08:00', deadlineName: '早鸟截止', nodes: [{ key: 'deadline', past: true }],
+    details: { registration: { verified: true, closesAt: '2026-11-18T18:00:00+08:00' } }, links: [signupLink]
+  }, f => {
+    assert.equal(f.page.data.phaseTitle, '报名截止 · 2026-11-18 18:00（北京时间）');
+    assert.equal(f.page.data.serviceAction?.url, signupLink.url);
+  });
+  await check('pickup before the race after registration closes', { ...upcoming, pickup: '周五到展览中心领取参赛包。', payDeadline: '2026-11-18', links: [signupLink] }, f => {
+    assert.equal(f.page.data.serviceAction?.kind, 'pickup', 'verified pickup information should replace closed signup');
+    assert.equal(f.page.data.publicStatus, '报名已截止');
+    assert.equal(f.page.data.phaseTitle, '缴费截止 · 2026-11-18', 'the next known date remains visible after signup closes');
+    f.page.openServiceAction();
+    assert.equal(f.page.data.tab, 'guide');
+    assert.equal(f.scrolls.at(-1)?.selector, '#guide-pickup');
+  });
+  const pickup = '周五到展览中心领取参赛包。';
+  await check('pickup chapter when the guide already includes the same text', { ...upcoming, pickup, guideText: '## 参赛包领取\n\n' + pickup }, f => {
+    assert.equal(f.page.data.serviceAction?.kind, 'pickup', 'pickup already recorded as a guide chapter still has a primary action');
+    f.page.openServiceAction();
+    assert.equal(f.page.data.tab, 'guide');
+    assert.match(f.scrolls.at(-1)?.selector, /^#guide-chapter-/);
+  });
+  await check('official results for an ended race', { ...upcoming, raceDate: '2026-11-16', links: [signupLink, resultLink] }, f => {
+    assert.equal(f.page.data.serviceAction?.label, '复制官方成绩链接', 'official results should become the primary action after the race');
+    f.page.openServiceAction();
+    assert.deepEqual(f.clipboard, [resultLink.url]);
+    assert.equal(f.page.data.tab, 'signup', 'official results are separate from personal result records');
+  });
+  for (const [name, race, wording] of [
+    ['no registration destination', open, /报名入口.*未录入/],
+    ['explicitly unverified signup', { ...open, links: [signupLink], signupQrAvailable: true, signupQrUrl: qrUrl, details: { registration: { entranceVerified: false } } }, /报名入口.*未录入/],
+    ['registration has not opened', { ...open, regStatus: '未开始', registrationStatus: 'not_open', open: false, regStart: '2026-11-19', links: [signupLink] }, /报名.*未开始/],
+    ['pickup placeholder', { ...upcoming, pickup: '领物安排待公布' }, /领物安排.*未录入/],
+    ['no official results', { ...upcoming, raceDate: '2026-11-16', eventUrl: 'https://official.example/home', links: [signupLink] }, /官方成绩.*未录入/],
+    ['event cancelled', { ...upcoming, registrationStatus: 'cancelled', links: [signupLink, resultLink], pickup }, /赛事已取消/]
+  ]) await check(name, race, f => {
+    assert.equal(f.page.data.serviceAction, null, 'no unrelated action should appear in the primary slot');
+    assert.match(f.page.data.servicePending, wording);
+    f.page.openServiceAction();
+    assert.deepEqual(f.clipboard, []);
+    assert.deepEqual(f.previews, []);
+  });
+  const markup = fs.readFileSync(path.join(root, 'miniprogram/pages/race/race.wxml'), 'utf8');
+  const service = markup.slice(markup.indexOf('class="race-service'), markup.indexOf('class="card personal-summary'));
+  try {
+    assert.match(service, /参赛服务.*raceDate.*locationText.*phaseTitle/s);
+    assert.equal((service.match(/bindtap="openServiceAction"/g) || []).length, 1, 'only one bound primary action');
+    assert.match(markup, /bindtap="toggleFollow"[\s\S]*bindtap="togglePersonal"/);
+  } catch (error) { failures.push(new Error('first screen renders time, city and one official service with its own control: ' + error.message, { cause: error })); }
+  if (failures.length) throw new AggregateError(failures, failures.map(error => error.message).join('\n'));
+  return 'Race services show city, date and next deadline, choose one real registration/QR/pickup/results action, display honest missing states, and keep guest follow and plans independent';
+}
 async function main() {
   const checks = [];
   const links = ['signup', 'draw', 'bib', 'result'].map(key => ({ key, url: 'https://official.example/' + key, label: key }));
@@ -174,6 +271,7 @@ async function main() {
     assert.equal(f.previews.length, count);
     checks.push('Public media supports field-specific failure/retry, ignores stale failed loads and opens canonical original images without changing plans');
   }
+  checks.push(await checkRaceService());
   console.log(JSON.stringify({ passed: true, kind: 'Current mini Page VM, not device testing', checks }, null, 2));
 }
 module.exports = { detailFixture, day, today };

@@ -330,6 +330,7 @@ async function main() {
     await stateButton.evaluate(button => button.click());
     assert.equal(requests, 1);
     await page.locator('header.topbar a').first().click();
+    await page.getByRole('button', { name: '搜赛事', exact: true }).click();
     await page.getByRole('textbox', { name: '搜索赛事名称或城市' }).fill('合成另一场马拉松');
     await page.getByRole('button', { name: '搜索', exact: true }).click();
     await page.locator('.race-card').filter({ hasText: '合成另一场马拉松' }).click();

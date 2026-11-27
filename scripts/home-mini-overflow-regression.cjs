@@ -7,7 +7,7 @@ const Module = require('node:module');
 const { fixture, event, settle } = require('./participation-mini-regression.cjs');
 const root = path.resolve(__dirname, '..');
 const route = 'pages/races/races';
-const scenarios = ['base', 'long-selected', 'native-buttons', 'long-native', 'sdk-buttons', 'long-sdk', 'large-count', 'more', 'city', 'time'];
+const scenarios = ['base', 'long-selected', 'native-buttons', 'long-native', 'sdk-buttons', 'long-sdk', 'large-count', 'keyword', 'retry', 'more', 'city', 'time', 'one-reminder'];
 const fullWidthPressure = 'button{width:100%;margin-left:auto;margin-right:auto}';
 // Local WeChat WAWebview.js uses wx-button:not([size=mini]) at 184px. The mirror
 // maps wx-button to button, preserving the selector's specificity and dimensions.
@@ -21,19 +21,115 @@ const rows = [
   { ...race, id: 'unknown', name: '下一场马拉松（合成验收）', city: '上海', raceDate: '', myStatus: '', following: false, regStatus: '报名未公布', deadlineLabel: '' }
 ];
 const catalog = ['beijing', 'shanghai', 'xiamen'].map((id, index) => ({ id, name: ['北京马拉松', '上海马拉松', '厦门马拉松'][index], worldAthletics: { label: '金标', year: 2026 }, caa: { label: 'A类', year: 2026 }, years: [2026, 2025] }));
+const notices = [
+  { race: rows[0], hit: { key: 'deadline', reason: '今日报名截止' } },
+  { race: rows[1], hit: { key: 'bib', reason: '号码公布' } }
+];
+
+async function checkHomeBehavior() {
+  const failures = [];
+  const check = async (label, action) => {
+    try { await action(); }
+    catch (error) { failures.push(label + ': ' + error.message); }
+  };
+  const f = fixture('races', url => {
+    if (url === '/reminders') return { mine: [notices[1]], reminders: notices };
+    if (url.startsWith('/races?')) return { races: rows, total: rows.length, page: Number(new URLSearchParams(url.split('?')[1]).get('page')), pages: 2 };
+    if (url === '/race-catalog') return { races: catalog };
+    throw Error('Fixture has no reply for ' + url);
+  });
+  const setData = f.page.setData;
+  f.page.setData = (patch, done) => { setData.call(f.page, patch); if (done) done(); };
+  f.page.onShow();
+  await settle();
+  assert.equal(f.page.data.races.length, rows.length, 'home fixtures loaded');
+  assert.ok(f.requests.some(call => call.url === '/reminders'), 'reminders API fixture was requested');
+  await check('Personal reminders precede general reminders, with duplicate events merged', () => {
+    assert.equal(f.page.data.reminders.map(item => item.race.id).join(','), 'long,beijing');
+  });
+  const callsBefore = f.requests.filter(call => call.url === '/reminders').length;
+  await check('Selecting another reminder and wrapping around sends no request', () => {
+    assert.equal(typeof f.page.nextReminder, 'function', 'manual reminder rotation is missing');
+    f.page.nextReminder();
+    assert.equal(f.page.data.reminderIndex, 1);
+    f.page.nextReminder();
+    assert.equal(f.page.data.reminderIndex, 0);
+  });
+  await check('Result summary follows submitted filters, across draft edits and pagination', async () => {
+    f.page.paint({ city: '北京', kind: 'road', month: '2027-03', status: 'open' });
+    await f.page.submitFind();
+    assert.match(f.requests.at(-1).url, /status=open.*kind=road.*month=2027-03/);
+    assert.equal(f.page.data.resultSummary, '路跑 · 北京 · 2027年3月');
+    f.page.pickCity(event({ name: '上海' }));
+    await f.page.nextPage();
+    assert.match(f.requests.at(-1).url, /city=%E5%8C%97%E4%BA%AC.*page=2$/);
+    assert.equal(f.page.data.resultSummary, '路跑 · 北京 · 2027年3月');
+  });
+  await check('Keyword summary tracks the submitted word without draft filters', async () => {
+    f.page.switchMode(event({ mode: 'keyword' }));
+    f.page.onQ(event({}, '  北京马拉松  '));
+    await f.page.submitFind();
+    f.page.onQ(event({}, '上海马拉松'));
+    assert.equal(f.page.data.resultSummary, '北京马拉松');
+    assert.equal(f.page.data.city, '上海');
+  });
+  await check('Working with results does not reload reminders', () => {
+    assert.equal(f.requests.filter(call => call.url === '/reminders').length, callsBefore, 'only home entry requested reminders');
+  });
+  await check('Turning pages scrolls back to results', () => {
+    assert.equal(f.scrolls.filter(item => item.selector === '#race-results').length, 3, 'first filters, then pagination, then keyword');
+  });
+  await check('A late reminder from the previous account stays hidden and cannot replace the current selection', async () => {
+    let release;
+    const firstReply = new Promise(resolve => { release = resolve; });
+    let count = 0;
+    const account = fixture('races', url => url === '/reminders' ? ++count === 1 ? firstReply : { reminders: [notices[0]] } : { races: rows, total: rows.length });
+    account.page.setData({ reminders: [notices[1]] });
+    account.page.onShow();
+    await settle();
+    account.page.onHide();
+    account.app.globalData.token = 'runner-b';
+    account.page.onShow();
+    assert.equal(account.page.data.reminders.length, 0);
+    await settle();
+    release({ mine: [notices[1]] });
+    await settle();
+    assert.equal(account.page.data.reminders.map(item => item.race.id).join(','), 'beijing');
+  });
+  await check('Reminder and archive shortcuts use the existing destinations', () => {
+    const markup = fs.readFileSync(path.join(root, 'miniprogram', route + '.wxml'), 'utf8');
+    assert.match(markup, /class="results-archive" url="\/pages\/race-catalog\/race-catalog"/);
+    assert.match(markup, /class="reminder-item" url="\/pages\/race\/race\?id=\{\{reminders\[reminderIndex\]\.race\.id\}\}"/);
+  });
+  assert.deepEqual(failures, []);
+  console.log('Mini home behavior passed: reminder order, manual navigation and committed result summaries.');
+}
 
 async function prepare(_route, _initial, scenario) {
-  const f = fixture('races', url => url.startsWith('/races?') ? { races: rows, total: 238, page: 1, pages: 1 } : url === '/race-catalog' ? { races: catalog } : {});
-  f.page.paint();
+  const f = fixture('races', url => {
+    if (url.startsWith('/races?')) {
+      const params = new URLSearchParams(url.split('?')[1]);
+      if (scenario === 'retry' && params.has('q')) throw Error('赛事暂时无法加载，请稍后重试');
+      return { races: rows, total: 238, page: 1, pages: ['base', 'sdk-buttons'].includes(scenario) ? 12 : 1 };
+    }
+    if (url === '/reminders') return { reminders: scenario === 'one-reminder' ? notices.slice(0, 1) : notices };
+    return url === '/race-catalog' ? { races: catalog } : {};
+  });
+  f.page.onShow();
   await f.page.load();
   await f.page.loadCatalog();
   await settle();
   f.page.setData({ statusBarHeight: 47, navHeight: 44, headerRight: 104, todayLabel: '11月16日 星期一' });
   if (['long-selected', 'long-native', 'long-sdk'].includes(scenario)) {
-    f.page.paint({ kind: 'trail', city: '新疆维吾尔自治区伊犁哈萨克自治州', month: '2027-12', full: true, status: 'open', meet: 'offline' });
+    f.page.paint({ kind: 'trail', city: '新疆维吾尔自治区伊犁哈萨克自治州', month: '2027-12', distance: 'full', status: 'open', meet: 'offline' });
     f.page.setData({ monthLabel: '2027年12月', total: 12345 });
   }
-  if (scenario === 'large-count') f.page.setData({ total: 123456789, statusLabel: '报名时间尚未公布' });
+  if (scenario === 'large-count') f.page.setData({ total: 123456789, resultStatusLabel: '报名时间尚未公布' });
+  if (['keyword', 'retry'].includes(scenario)) {
+    f.page.switchMode(event({ mode: 'keyword' }));
+    f.page.onQ(event({}, '环大美兴安岭森林湿地国际山地超级越野挑战赛'));
+    await f.page.submitFind();
+  }
   if (scenario === 'more') {
     await f.page.setMeet(event({ meet: 'online' }));
     f.page.openSheet(event({ sheet: 'status' }));
@@ -42,7 +138,7 @@ async function prepare(_route, _initial, scenario) {
   if (scenario === 'city') { f.page.openSheet(event({ sheet: 'city' })); f.page.pickProvince(event({name:'贵州'})); }
   // 100% is a controlled width-pressure scenario, not a claim about WeChat's default.
   // The separate SDK scenarios reproduce the observed 184px rule and specificity.
-  const pressure = ['native-buttons', 'long-native'].includes(scenario) ? fullWidthPressure : ['sdk-buttons', 'long-sdk'].includes(scenario) ? sdkButtonDefault : '';
+  const pressure = ['native-buttons', 'long-native'].includes(scenario) ? fullWidthPressure : ['sdk-buttons', 'long-sdk', 'keyword', 'retry'].includes(scenario) ? sdkButtonDefault : '';
   return { data: f.page.data, components: {}, css: pressure };
 }
 
@@ -52,7 +148,7 @@ async function audit({ page, scenario, width }) {
   const metrics = await page.evaluate(() => {
     const box = e => { const r = e.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height }; };
     const outside = [...document.querySelectorAll('body *')].map(e => ({ tag: e.tagName, cls: e.className, text: e.textContent.slice(0, 50), ...box(e) })).filter(e => e.width > 0 && (e.right > innerWidth + 1 || e.left < -1));
-    const controls = [...document.querySelectorAll('.kind-tab,.filter-more,.filter-chip,.race-plan-link,.race-follow,.filter-tag,.clear-filters')].map(e => ({ cls: e.className, ...box(e) }));
+    const controls = [...document.querySelectorAll('.find-card button,.quick-entry,.reminder-next,.results-archive,.race-plan-link,.race-follow,.pager button,.retry')].map(e => ({ cls: e.className, ...box(e) }));
     const pseudoOverflow = [];
     for (const e of document.querySelectorAll('body *')) {
       for (const pseudo of ['::before', '::after']) {
@@ -61,26 +157,53 @@ async function audit({ page, scenario, width }) {
         if (parseFloat(s.width) > innerWidth || parseFloat(s.right) < 0 || parseFloat(s.left) < 0) pseudoOverflow.push({ cls: e.className, pseudo, width: s.width, left: s.left, right: s.right, hostOverflow: getComputedStyle(e).overflowX });
       }
     }
-    return { viewport: innerWidth, documentWidth: document.documentElement.scrollWidth, bodyWidth: document.body.scrollWidth, root: box(document.querySelector('.page')), controls, outside, pseudoOverflow };
+    const cta = document.querySelector('.find-submit');
+    return { viewport: innerWidth, documentWidth: document.documentElement.scrollWidth, bodyWidth: document.body.scrollWidth, root: box(document.querySelector('.page')), modes: box(document.querySelector('.find-modes')), cta: box(cta), controls, outside, pseudoOverflow };
   });
   expect(metrics.documentWidth <= width, 'The document must not be wider than the viewport');
   expect(metrics.root.width <= width + 1, 'The page root must fit the viewport');
-  expect(metrics.controls.every(e => e.height >= 43.5 && e.width >= 1 && e.left >= -1 && e.right <= width + 1), 'Every filter and race action must fit; clipping overflow must not hide broken controls');
+  expect(metrics.controls.every(e => e.height >= 43.5 && e.width >= 44 && e.left >= -1 && e.right <= width + 1), 'Every finder and race action must fit; clipping overflow must not hide broken controls');
+  expect(Math.abs(metrics.cta.width - metrics.modes.width) < 1, 'The primary button spans the full width even under SDK button defaults');
   const kindButtons = metrics.controls.filter(e => e.cls.includes('kind-tab'));
-  expect(kindButtons.length === 3 && kindButtons.every(e => e.width < width / 2), 'Category buttons must use their content width under SDK and width-pressure rules');
-  expect(await page.locator('.race-name').count() === 3, 'Long-name and empty-date race fixtures must still render');
+  const keyword = ['keyword', 'retry'].includes(scenario);
+  if (keyword) {
+    expect((await page.locator('.result-summary').allTextContents())[0] === '环大美兴安岭森林湿地国际山地超级越野挑战赛', 'Search results show the submitted keyword');
+    expect(await page.locator('.quick-entries,.reminder,.results-archive,.home-discover,.home-race-catalog').count() === 0, 'Search keeps focus on results');
+  } else {
+    const order = await page.locator('.quick-entries,.reminder,.results,.home-discover,.home-race-catalog').evaluateAll(nodes => nodes.map(node => node.className));
+    expect(order.join(',') === 'quick-entries,reminder,results,home-discover,home-race-catalog', 'Show the shortcuts and actual reminder before races, and optional discovery and archive after the results');
+    expect(await page.locator('.reminder-next').count() === (scenario === 'one-reminder' ? 0 : 1), 'Only multiple reminders receive the next button');
+    expect(await page.locator('.reminder-item').count() === 1, 'A single active reminder links directly to race details');
+    expect(await page.locator('.results-head .results-archive').count() === 1, 'Archive directory is available without scrolling past the list');
+    expect(!(await page.locator('.home-discover').textContent()).includes(rows[0].name), 'The calendar shortcut is not populated from the filtered race list');
+  }
+  if (['base', 'sdk-buttons'].includes(scenario)) {
+    expect(await page.locator('.pager button').count() === 12, 'The numeric pagination and both ends remain available');
+    expect(await page.locator('.pager button[disabled]').count() === 1, 'The previous button is disabled on the first page');
+  }
+  expect(kindButtons.length === (keyword ? 0 : 3) && kindButtons.every(e => e.width < width / 2), 'Category buttons must use their content width under SDK and width-pressure rules');
+  expect(await page.locator('.race-name').count() === (scenario === 'retry' ? 0 : 3), 'Long-name and empty-date race fixtures must still render after a successful request');
+  if (scenario !== 'retry') expect(await page.locator('.race-name').nth(1).evaluate(e => e.scrollWidth <= e.clientWidth && e.clientHeight > 25), 'The long race name must wrap inside its card');
+  if (!['more', 'city', 'time'].includes(scenario)) {
+    const target = page.locator(scenario === 'retry' ? '.retry' : '.find-submit');
+    await target.scrollIntoViewIfNeeded();
+    expect(await target.evaluate(e => {
+      const r = e.getBoundingClientRect();
+      return e.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
+    }), 'The primary or retry button must be reachable');
+  }
   await page.evaluate(() => scrollTo(110, 0));
   const pan = await page.evaluate(() => ({ scrollX, rootLeft: document.querySelector('.page').getBoundingClientRect().left, headerRight: document.querySelector('.home-header').getBoundingClientRect().right }));
   expect(pan.scrollX === 0 && Math.abs(pan.rootLeft) < 1 && Math.abs(pan.headerRight - width) < 1, 'A horizontal pan must not shift the entire page away from the native tab bar');
   await page.evaluate(() => scrollTo(0, 250));
   const sticky = await page.locator('.home-navigation').evaluate(e => ({ top: e.getBoundingClientRect().top, position: getComputedStyle(e).position }));
-  expect(sticky.position === 'sticky' && Math.abs(sticky.top) < 1, 'The red navigation must keep its sticky position after horizontal containment');
+  expect(sticky.position === 'sticky' && Math.abs(sticky.top) < 1, 'Navigation must keep its sticky position after horizontal containment');
   if (['more', 'city', 'time'].includes(scenario)) {
     const drawer = await page.locator('.drop').evaluate(e => {
       const r = e.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, viewportHeight: innerHeight };
     });
     expect(drawer.left >= -1 && drawer.right <= width + 1 && drawer.top >= 0 && Math.abs(drawer.bottom - drawer.viewportHeight) < 1, 'The filter drawer must remain visible at the bottom of the viewport');
-    expect(await page.locator('.act.ok').count() === 0, 'Immediate filters must not expose an obsolete confirmation action');
+    expect(await page.locator('.drop .find-submit').count() === 0, 'The drawer must leave submission to the finder card');
     const options = page.locator('.drop button');
     for (let index = 0; index < await options.count(); index++) {
       const option = options.nth(index); await option.scrollIntoViewIfNeeded();
@@ -96,7 +219,7 @@ async function audit({ page, scenario, width }) {
     const originalViewport = page.viewportSize();
     const shortHeight = width === 320 ? 780 : 844;
     await page.setViewportSize({ width, height: shortHeight });
-    // Every immediate-apply option must remain reachable under both the actual
+    // Every choice must remain reachable under both the actual
     // SDK selector and the separate full-width pressure scenario.
     for (const [name, css] of [['native-drawer', fullWidthPressure], ['sdk-drawer', sdkButtonDefault]]) {
       const nativeStyle = await page.addStyleTag({ content: css });
@@ -123,8 +246,9 @@ async function audit({ page, scenario, width }) {
   return errors;
 }
 
-module.exports = { cases: scenarios.map(scenario => ({ route, scenario })), prepare, audit };
+module.exports = { cases: scenarios.map(scenario => ({ route, scenario })), prepare, audit, checkHomeBehavior };
 if (require.main === module) {
+  checkHomeBehavior().catch(error => { console.error(error); process.exitCode = 1; });
   Object.assign(process.env, { MINI_AUDIT_FIXTURE: __filename, MINI_AUDIT_ROUTES: route, UI_AUDIT_OUT: out, UI_AUDIT_REPORT: path.join(out, 'report.json') });
   // Reuse the repository's WXML renderer and asset resolver, adding the affected
   // 402px iPhone width to its normal 320/390 sweep without modifying that harness.

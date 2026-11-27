@@ -1,5 +1,5 @@
 <template>
-  <main class="race-page">
+  <main class="race-page" :class="{ 'race-loaded': race }">
     <header class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
       <h1>赛事</h1>
@@ -10,41 +10,56 @@
       <button v-if="!loading" type="button" class="retry-button" @click="retryLoad">重新加载</button>
       <router-link v-if="!loading" to="/">返回赛事列表</router-link>
     </section>
-    <button v-if="race?.coverSheet && !coverFailed" class="race-cover" type="button" aria-label="查看赛事封面" @click="openSheet(race.coverSheet.id)"><img :src="sheetSrc(race.coverSheet.id)" :alt="race.name + '赛事封面'" fetchpriority="high" @error="coverFailed = true" /><span>查看封面 <span aria-hidden="true">↗</span></span></button>
-    <section v-if="race" class="pass race-hero" :class="['tone-' + tone, { 'has-cover': race.coverSheet && !coverFailed }]" aria-labelledby="race-title">
+    <section v-if="race" class="race-hero" aria-labelledby="race-title">
+      <img v-if="race.coverSheet && !coverFailed" class="race-cover" :src="sheetSrc(race.coverSheet.id)" alt="" fetchpriority="high" @error="coverFailed = true" />
       <svg v-if="!race.coverSheet || coverFailed" class="race-hero-lines" viewBox="0 0 430 280" fill="none" aria-hidden="true"><path d="M330-60h40a85 85 0 0 1 85 85v85a85 85 0 0 1-85 85h-40a85 85 0 0 1-85-85V25a85 85 0 0 1 85-85Z"/><path d="M330-42h40a67 67 0 0 1 67 67v85a67 67 0 0 1-67 67h-40a67 67 0 0 1-67-67V25a67 67 0 0 1 67-67Z"/><path d="M330-24h40a49 49 0 0 1 49 49v85a49 49 0 0 1-49 49h-40a49 49 0 0 1-49-49V25a49 49 0 0 1 49-49Z"/><path d="M277 248v-41h26v41m6 0v-72h23v72m8 0v-54h36v54m9 0v-92h28v92m-150 0h167"/><path d="M246 207h-25v41h-28m67-203h160M260 53h160"/></svg>
-      <div class="pass-copy">
-        <div class="race-hero-eyebrow"><span>{{ race.raceDate ? race.raceDate.slice(0, 4) + ' 年度赛事' : '赛事日历' }}</span><span class="pass-pill">{{ publicStage }}</span></div>
-        <h1 id="race-title">{{ race.name }}</h1>
-        <p class="race-hero-date"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6 2.5v4m8-4v4M3 8.5h14"/></svg><strong>{{ race.raceDateLabel || race.raceDate || '比赛日期未录入' }}</strong><span v-if="race.startAt">{{ race.startAt }} 起跑</span></p>
-        <p class="race-hero-place"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6c0 3.5-5 8-5 8S3 9.5 3 6a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6" r="1.5"/></svg>{{ locationLine || '举办地点未录入' }}</p>
-        <div v-if="projectLabels.length" class="race-hero-projects" aria-label="赛事项目"><span v-for="label in projectLabels" :key="label">{{ label }}</span></div><p v-else class="race-project-missing">赛事项目尚未录入</p>
-        <button v-if="coverFailed" type="button" class="cover-retry" @click="coverFailed = false">封面暂时无法加载 · 重试</button>
-        <div class="race-extra-facts"><span>{{ race.meet === 'online' ? '线上赛' : '线下赛' }}</span><span>{{ typeLabel }}</span><span v-if="race.gradeLabel">{{ race.gradeLabel }}</span></div>
+      <div class="race-hero-meta">
+        <span>{{ typeLabel }} · {{ race.meet === 'online' ? '线上赛' : '线下赛' }}<template v-if="race.gradeLabel"> · {{ race.gradeLabel }}</template></span>
+        <button v-if="race.coverSheet && !coverFailed" class="race-cover-action" type="button" aria-label="查看赛事封面" @click="openSheet(race.coverSheet.id)">查看封面 <span aria-hidden="true">↗</span></button>
+        <button v-else-if="coverFailed" type="button" class="race-cover-action" @click="coverFailed = false">重试封面</button>
+      </div>
+      <h1 id="race-title">{{ race.name }}</h1>
+      <p v-if="locationLine" class="race-hero-place"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6c0 3.5-5 8-5 8S3 9.5 3 6a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6" r="1.5"/></svg>{{ locationLine }}</p>
+    </section>
+    <section v-if="race" class="race-service-card" aria-labelledby="race-service-title">
+      <div class="race-service-heading">
+        <h2 id="race-service-title">参赛服务</h2>
+        <strong class="race-service-stage">{{ publicStage }}</strong>
+      </div>
+      <div class="race-service-facts">
+        <div><span>比赛日期</span><strong>{{ race.raceDateLabel || race.raceDate || '日期未录入' }}</strong><small v-if="race.startAt">{{ race.startAt }} 起跑</small></div>
+        <div><span>举办城市</span><strong>{{ race.city || race.province || '城市未录入' }}</strong></div>
+      </div>
+      <div v-if="serviceNext" class="race-service-next">
+        <span>{{ serviceNext.label }}</span><strong>{{ serviceNext.at }}</strong><small v-if="serviceNext.text">{{ serviceNext.text }}</small>
+      </div>
+      <div class="race-service-action-row">
+        <a v-if="serviceAction?.url" class="race-service-primary" :href="serviceAction.url" target="_blank" rel="noopener">{{ serviceAction.label }}<span aria-hidden="true">↗</span></a>
+        <button v-else-if="serviceAction" type="button" class="race-service-primary" @click="serviceAction.open">{{ serviceAction.label }}<span aria-hidden="true">›</span></button>
+        <p v-else class="race-service-empty">{{ serviceEmptyText }}</p>
+      </div>
+      <div class="race-service-shortcuts" aria-label="赛事快捷操作">
+        <div class="race-follow-row"><FollowRaceButton :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" /></div>
+        <button type="button" class="race-service-plan" aria-label="参赛计划" @click="openPlanShortcut"><span aria-hidden="true">＋</span>参赛计划</button>
+        <a v-if="serviceWebsite" class="race-service-official" :href="serviceWebsite" target="_blank" rel="noopener">官方入口<span aria-hidden="true">↗</span></a>
       </div>
     </section>
-    <div v-if="race" class="detail race-overview">
-      <div class="race-follow-row">
-        <span class="follow-copy"><strong>{{ following ? '已收进我的赛事' : '关注这场比赛' }}</strong><small>{{ following ? '与参赛计划分别管理' : '收藏赛事，接收站内节点提醒' }}</small></span>
-        <FollowRaceButton appearance="list" :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" />
-      </div>
+    <div v-if="race && conflicts.length" class="detail race-overview">
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>
-    <section v-if="race" class="official-actions signup-entry" aria-labelledby="official-actions-title">
-      <div class="official-heading"><span id="official-actions-title">报名信息</span><span class="official-stage">{{ registrationState || publicStage }}</span></div>
-      <p v-if="nextMoment && nextMoment.key !== 'race'" class="official-moment"><span>{{ nextMoment.label }}</span><strong>{{ nextMoment.at }}</strong><small v-if="nextMoment.text">{{ nextMoment.text }}</small></p>
-      <div v-if="signupQr" class="signup-code">
-        <button v-if="!qrFailed" type="button" class="signup-qr-preview" aria-label="预览本届赛事报名二维码" @click="viewer = signupQr"><img :src="signupQr" :alt="race.name + '报名二维码'" @error="qrFailed = true" /></button>
-        <p v-else class="src">二维码暂时无法加载。<button type="button" class="media-retry" @click="qrFailed = false">重试</button></p>
-        <p class="src signup-qr-hint">{{ signupHint }}</p>
-      </div>
-      <p v-else class="official-unavailable">{{ officialHint }}</p>
-    </section>
     <div v-if="tabs.length" class="tabs" role="tablist">
       <button v-for="item in tabs" :key="item.id" type="button" role="tab" :id="'race-tab-' + item.id" :aria-selected="tab === item.id" :tabindex="tab === item.id ? 0 : -1" aria-controls="race-content" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)" @keydown="moveTab($event, item.id)">{{ item.label }}</button>
     </div>
     <div v-if="race" id="race-content" ref="raceTabPanel" class="race-tab-content" :style="{ minHeight: tabContentMinHeight + 'px' }" role="tabpanel" :aria-labelledby="'race-tab-' + tab">
     <template v-if="race && tab === 'signup'">
+      <section v-if="signupQr && serviceAction?.kind !== 'qr'" class="official-actions signup-entry" aria-labelledby="official-actions-title">
+        <div class="official-heading"><span id="official-actions-title">报名信息</span><span class="official-stage">{{ registrationState || publicStage }}</span></div>
+        <div class="signup-code">
+          <button v-if="!qrFailed" type="button" class="signup-qr-preview" aria-label="预览本届赛事报名二维码" @click="viewer = signupQr"><img :src="signupQr" :alt="race.name + '报名二维码'" @error="qrFailed = true" /></button>
+          <p v-else class="src">二维码暂时无法加载。<button type="button" class="media-retry" @click="qrFailed = false">重试</button></p>
+          <p class="src signup-qr-hint">{{ signupHint }}</p>
+        </div>
+      </section>
       <div v-if="race.nodes.some(node => node.key !== 'race')" class="block race-timeline-card">
         <div class="race-section-heading"><h2>重要时间</h2><span>报名 · 参赛节点</span></div>
         <div class="timeline">
@@ -265,9 +280,8 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router";
 import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
-import { toneOf } from "../tone";
 import { parseGuide } from "../guide-md";
-import { groupCards, guideSource, sheetCaption, guideLayout, registrationLabel, qrAvailable, qrHint } from "../race-detail-content";
+import { groupCards, guideSource, sheetCaption, guideLayout, localMoment, registrationLabel, qrAvailable, qrHint } from "../race-detail-content";
 import FollowRaceButton from '../components/FollowRaceButton.vue';
 import RaceOutings from '../components/RaceOutings.vue';
 import RaceMedia from '../components/RaceMedia.vue';
@@ -322,6 +336,12 @@ function loginForPlan() {
   localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?plan=1");
   router.push("/mine");
 }
+function openPlanShortcut() {
+  if (!ready.value) return loginForPlan();
+  pickTab('signup');
+  planOpen.value = true;
+  nextTick(() => document.getElementById('race-plan-title')?.scrollIntoView({ block: 'center' }));
+}
 function loginForResult() {
   localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?tab=result");
   router.push("/mine");
@@ -330,11 +350,9 @@ async function choosePlan(status) {
   if (await mark(status)) message.value = "已标记为「" + status + "」";
 }
 const race = ref(null);
-const tone = computed(() => toneOf(race.value));
 const today = () => new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
 const locationLine = computed(() => [...new Set([race.value?.province, race.value?.city, race.value?.district, race.value?.place].filter(Boolean))].join(' · '));
 const detailGroups = computed(() => groupCards(race.value));
-const projectLabels = computed(() => [...new Set(detailGroups.value.length ? detailGroups.value.map(group => group.name) : [...(race.value?.distanceLabels || []), ...(race.value?.groups || [])])]);
 const typeLabel = computed(() => {
   const labels = race.value?.kindLabels || [];
   return labels.length ? labels.join(' / ') : race.value?.kind === 'trail' ? '越野' : '路跑';
@@ -356,7 +374,8 @@ const publicStage = computed(() => {
   if (row.raceDate <= today() && (row.raceEndDate || row.raceDate) >= today()) return row.raceEndDate > row.raceDate ? '比赛中' : '比赛日';
   if (verified) return verified;
   if (registrationScheduled(row, today())) return '报名未开始';
-  if (!row.deadline) return '报名时间未录入';
+  if (row.regStatus === '报名中') return '报名中';
+  if (!row.deadline || /早鸟|精英|优惠/.test(row.deadlineName || '')) return '报名时间未录入';
   return row.open ? '报名中' : '报名已截止';
 });
 const sortedNodes = computed(() => [...(race.value?.nodes || [])].sort((a, b) => a.at.localeCompare(b.at)));
@@ -381,6 +400,15 @@ const guideSections = computed(() => [
   { id: 'originals', label: '规程原图参考', hasContent: extraGuideSheets.value.length > 0 }
 ].filter(section => section.hasContent !== false));
 function goToGuide(id) { if (id === 'originals') guideOriginalsOpen.value = true; nextTick(() => document.getElementById('guide-' + id)?.scrollIntoView({ behavior: 'auto', block: 'start' })); }
+const pickupGuideSection = computed(() => {
+  const pickup = guideExtras.value.pickup.trim();
+  if (pickup && !/^(?:领物(?:安排|信息)?)?\s*(?:待公布|暂未公布|另行通知|待定|尚未录入)[。.]?$/.test(pickup)) return 'pickup';
+  return guideExtras.value.chapters.find(section => /领物|领包|领取参赛|参赛包领取/.test(section.label))?.id;
+});
+function openPickupGuide() {
+  pickTab('guide');
+  goToGuide(pickupGuideSection.value);
+}
 const viewer = ref(''), viewerFailed = ref(false), viewerZoom = ref(false);
 const gallery = computed(() => {
   const row = race.value;
@@ -523,14 +551,50 @@ const initialTab = () => ["signup", "guide", "news", "result"].includes(route.qu
 const tab = ref(initialTab());
 const raceTabPanel = ref(null);
 const tabContentMinHeight = ref(0);
-const signupQr = computed(() => qrAvailable(race.value) ? race.value.signupQrUrl || '/marathon/api/races/' + encodeURIComponent(race.value.id) + '/signup-qr' : '');
+const signupQr = computed(() => race.value?.details?.registration?.entranceVerified !== false && qrAvailable(race.value) ? race.value.signupQrUrl || '/marathon/api/races/' + encodeURIComponent(race.value.id) + '/signup-qr' : '');
 const signupHint = computed(() => qrHint(race.value));
 const registrationState = computed(() => registrationLabel(race.value));
 function safeOfficialUrl(value) { return typeof value === 'string' && /^https:\/\/[^\s]+$/i.test(value); }
 const officialLinks = computed(() => (race.value?.links || []).filter(item => safeOfficialUrl(item.url)));
 const officialResultLink = computed(() => officialLinks.value.find(item => item.key === 'result'));
+const serviceWebsite = computed(() => [race.value?.eventUrl, race.value?.officialUrl].find(safeOfficialUrl));
 const queryLinks = computed(() => officialLinks.value.filter(link => link.key !== 'signup').map(link => ({ ...link, label: { draw: '中签查询', bib: '参赛号码', result: '官方成绩', live: '赛事直播' }[link.key] || link.label })));
-const officialHint = computed(() => registrationLabel(race.value) || '本届赛事报名入口尚未录入。');
+const serviceBlocked = computed(() => ['cancelled', 'invalid'].includes(race.value?.registrationStatus) || /取消|入口.*失效/.test(publicStage.value));
+const pickupStage = computed(() => ['报名已截止', '已报满', '比赛日', '比赛中'].includes(publicStage.value));
+const serviceNext = computed(() => {
+  const row = race.value;
+  if (!row || serviceBlocked.value || publicStage.value === '已结束') return null;
+  const moments = row.nodes.filter(node => node.at && (!node.past || node.today && /^\d{4}-\d{2}-\d{2}$/.test(node.at)));
+  if (row.nextNode?.at && !row.nextNode.past && !row.nodes.some(node => node.key === row.nextNode.key)) moments.push(row.nextNode);
+  const registration = row.details?.registration;
+  const verifiedClose = registration?.verified === true && registration.closesAt;
+  const verifiedCutoff = verifiedClose && localMoment(verifiedClose, false);
+  if (/^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2})?$/.test(verifiedCutoff)) {
+    const rawCutoff = moments.findIndex(node => node.key === 'deadline');
+    if (rawCutoff >= 0) moments.splice(rawCutoff, 1);
+    if (publicStage.value === '报名中') moments.push({ key: 'deadline', label: '报名截止', at: verifiedCutoff });
+  }
+  const ordered = moments.map(node => ({ ...node, at: localMoment(node.at, false) })).sort((a, b) => a.at.localeCompare(b.at));
+  return ordered.find(node => node.key !== 'race') || ordered[0] || null;
+});
+const serviceAction = computed(() => {
+  if (!race.value || serviceBlocked.value) return null;
+  const stage = publicStage.value;
+  if (stage === '已结束') return officialResultLink.value ? { label: '查官方成绩', url: officialResultLink.value.url } : null;
+  if (stage === '报名中') {
+    const signupLink = race.value.details?.registration?.entranceVerified !== false && officialLinks.value.find(item => item.key === 'signup');
+    if (signupLink) return { label: '前往官方报名', url: signupLink.url };
+    return signupQr.value ? { kind: 'qr', label: '查看报名二维码', open: () => { viewer.value = signupQr.value; } } : null;
+  }
+  return pickupStage.value && pickupGuideSection.value ? { label: '查看领物安排', open: openPickupGuide } : null;
+});
+const serviceEmptyText = computed(() => {
+  if (serviceBlocked.value) return '请留意组委会发布的赛事公告。';
+  if (publicStage.value === '已结束') return '官方成绩入口尚未录入。';
+  if (publicStage.value === '报名未开始') return '报名入口尚未开放。';
+  if (pickupStage.value) return '领物安排尚未录入。';
+  return '本届赛事报名入口尚未录入。';
+});
 const tabs = computed(() => {
   if (!race.value) return [];
   const list = [{ id: "signup", label: "赛事信息" }];

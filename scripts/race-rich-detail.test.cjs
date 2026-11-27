@@ -80,7 +80,7 @@ test('guide chapters take priority, repeated summaries disappear and distinct no
 });
 
 test('closed registration remains a known status without a cutoff and QR previews only the selected entry', async () => {
-  const f = detailFixture({ ...sample, deadline: '', regStart: '' });
+  const f = detailFixture({ ...sample, deadline: '', regStart: '' }, true, '2026-11-17T12:00:00+08:00');
   f.page.onLoad({ id: sample.id }); await f.page.load();
   assert.equal(f.page.data.publicStatus, '报名已截止');
   assert.equal(f.page.data.phaseTitle, '报名已截止');
@@ -116,8 +116,12 @@ test('cancelled or invalid entries cannot show a registration QR even when a URL
   }
   const web = fs.readFileSync(require.resolve('../web/src/views/Race.vue'), 'utf8');
   const mini = fs.readFileSync(require.resolve('../miniprogram/pages/race/race.wxml'), 'utf8');
-  const webArea = web.slice(web.indexOf('class="official-actions signup-entry"'), web.indexOf('<div v-if="tabs.length"'));
-  const miniArea = mini.slice(mini.indexOf('class="official-qr signup-entry"'), mini.indexOf('<view class="race-follow-row">'));
+  const webStart = web.indexOf('class="official-actions signup-entry"');
+  const webArea = web.slice(webStart, web.indexOf('</section>', webStart));
+  assert.match(webArea, /signup-qr-preview/);
+  const miniStart = mini.indexOf('class="official-qr signup-entry"');
+  const miniArea = mini.slice(miniStart, mini.indexOf('<navigator wx:if="{{race.archiveId}}"', miniStart));
+  assert.match(miniArea, /bindtap="previewSignupQr"/);
   assert.doesNotMatch(webArea, /<details|<summary|href=|官方报名|复制链接/);
   assert.doesNotMatch(miniArea, /toggleSignupQr|copyLink|官方报名|展开二维码|复制链接/);
 });

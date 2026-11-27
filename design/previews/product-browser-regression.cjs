@@ -6,6 +6,126 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright-core")
 const base = process.env.MARATHON_PREVIEW_URL || "http://127.0.0.1:5174/marathon";
 const output = __dirname;
 const report = { kind: "Product browsing regressions with in-memory API fixtures", checks: [], screenshots: [], errors: [] };
+const longRaceName = "杭州钱塘江两岸城市绿道暨西湖群山国际马拉松越野耐力挑战赛";
+
+async function checkHome(page, queries, width) {
+  const card = page.getByRole("region", { name: "找比赛", exact: true });
+  const conditions = page.getByRole("button", { name: "按条件找赛", exact: true });
+  const keywordMode = page.getByRole("button", { name: "搜赛事", exact: true });
+  const field = page.getByRole("textbox", { name: "搜索赛事名称或城市", exact: true });
+  const submitConditions = page.getByRole("button", { name: "查找比赛", exact: true });
+  const submitKeyword = page.getByRole("button", { name: "搜索", exact: true });
+  const results = page.locator(".home-results");
+  const pending = page.getByRole("alert").getByRole("button", { name: "重试", exact: true });
+  const failures = [];
+  async function openHome() {
+    await page.goto(base + "/");
+    if (await pending.isVisible()) await pending.click();
+    await results.getByText("云上越野训练赛", { exact: true }).waitFor();
+  }
+  async function check(name, run) {
+    try {
+      await openHome();
+      await run();
+      report.checks.push({ name, width });
+    } catch (error) {
+      failures.push(new Error(name + " — " + error.message));
+    }
+  }
+  async function requestOnClick(control) {
+    const next = page.waitForResponse((response) => new URL(response.url()).pathname === "/marathon/api/races");
+    await control.click();
+    return Object.fromEntries(new URL((await next).url()).searchParams);
+  }
+
+  await check("条件选好后统一查赛，赛事类型与参赛形式独立", async () => {
+    const prior = queries.length;
+    await page.getByRole("button", { name: "更多筛选", exact: true }).click();
+    await page.getByRole("navigation", { name: "赛事形式" }).getByRole("button", { name: "线上赛" }).click();
+    await page.locator(".home-filter-sheet").waitFor({ state: "hidden" });
+    await page.getByRole("navigation", { name: "赛事类型" }).getByRole("button", { name: "越野赛" }).click();
+    await page.clock.runFor(300);
+    assert.equal(queries.length, prior, "编辑赛事类型和参赛形式时应等待点击「查找比赛」");
+    assert.deepEqual(await requestOnClick(submitConditions), { kind: "trail", meet: "online", status: "upcoming", page: "1" });
+    await results.getByText(longRaceName, { exact: true }).waitFor();
+    if (width === 320 || width === 390) await auditHomeCard(page, card, submitConditions, "home-conditions-" + width);
+  });
+  await check("关键词经提交可查往届赛事，并忽略条件输入", async () => {
+    await page.getByRole("navigation", { name: "赛事类型" }).getByRole("button", { name: "路跑" }).click();
+    await keywordMode.click();
+    const prior = queries.length;
+    await field.fill("  往届北马  ");
+    await page.clock.runFor(300);
+    assert.equal(queries.length, prior, "编辑关键词时应等待点击「搜索」");
+    assert.deepEqual(await requestOnClick(submitKeyword), { q: "往届北马", status: "all", page: "1" });
+    await results.getByText("2022 北京马拉松（往届）", { exact: true }).waitFor();
+    if (width === 320 || width === 390) await auditHomeCard(page, card, submitKeyword, "home-keyword-" + width);
+  });
+  await check("切换模式保留两种输入并且不发请求", async () => {
+    assert.equal(await conditions.count(), 1, "应有「按条件找赛」与「搜赛事」两个模式控件");
+    assert.equal(await keywordMode.count(), 1);
+    const prior = queries.length;
+    await card.getByRole("button", { name: "比赛地点" }).click();
+    await page.getByRole("navigation", { name: "省份导航" }).getByRole("button", { name: "浙江", exact: true }).click();
+    await page.locator(".cities").getByRole("button", { name: "杭州", exact: true }).click();
+    await keywordMode.click();
+    await field.fill("未提交的关键词");
+    await conditions.click();
+    assert.equal(await card.getByRole("button", { name: "比赛地点" }).innerText(), "杭州");
+    await keywordMode.click();
+    assert.equal(await field.inputValue(), "未提交的关键词");
+    assert.equal(await keywordMode.getAttribute("aria-pressed"), "true");
+    await page.clock.runFor(300);
+    assert.equal(queries.length, prior);
+  });
+  await check("请求失败后用原参数重试，保留新输入", async () => {
+    await keywordMode.click();
+    await field.fill("待重试的赛事");
+    const submitted = await requestOnClick(submitKeyword);
+    await pending.waitFor();
+    await field.fill("下一次要搜的赛事");
+    await page.clock.runFor(300);
+    assert.ok(await pending.isVisible(), "未提交的关键词不能消除原请求的失败状态");
+    assert.deepEqual(await requestOnClick(pending), submitted, "重试须发送已失败的参数");
+    assert.equal(await field.inputValue(), "下一次要搜的赛事");
+    await results.getByText("待重试的赛事", { exact: true }).waitFor();
+  });
+  if (width === 390) await check("链接中的关键词和筛选条件可恢复并分别使用", async () => {
+    const search = new URLSearchParams({ q: "往届北马", city: "杭州", month: "2027-11", kind: "trail" });
+    await page.goto(base + "/?" + search);
+    await results.getByText("2022 北京马拉松（往届）", { exact: true }).waitFor();
+    assert.equal(await field.inputValue(), "往届北马");
+    assert.deepEqual(Object.fromEntries(new URLSearchParams(queries.at(-1))), { q: "往届北马", status: "all", page: "1" });
+    await conditions.click();
+    assert.equal(await card.getByRole("button", { name: "比赛地点" }).innerText(), "杭州");
+    assert.equal(await card.getByRole("button", { name: "比赛时间" }).innerText(), "2027年11月");
+    assert.deepEqual(await requestOnClick(submitConditions), { city: "杭州", month: "2027-11", kind: "trail", status: "upcoming", page: "1" });
+  });
+
+  if (failures.length) throw new Error(failures.map((error) => error.message).join("\n"));
+}
+
+async function auditHomeCard(page, card, primary, name) {
+  await card.scrollIntoViewIfNeeded();
+  const { width, documentWidth, hit, bounds, longNameFits } = await primary.evaluate((button, longRaceName) => {
+    const buttonBox = button.getBoundingClientRect();
+    const cardBox = button.closest(".race-finder").getBoundingClientRect();
+    const raceName = [...document.querySelectorAll(".home-results .race-card .body > strong")].find((label) => label.textContent === longRaceName);
+    const range = document.createRange();
+    if (raceName) range.selectNodeContents(raceName);
+    return {
+      width: innerWidth,
+      documentWidth: document.documentElement.scrollWidth,
+      hit: button.contains(document.elementFromPoint((buttonBox.left + buttonBox.right) / 2, (buttonBox.top + buttonBox.bottom) / 2)),
+      bounds: [cardBox.left, buttonBox.left, buttonBox.right, cardBox.right, buttonBox.height],
+      longNameFits: !raceName || [...range.getClientRects()].every((line) => line.left >= raceName.getBoundingClientRect().left - 1 && line.right <= raceName.getBoundingClientRect().right + 1)
+    };
+  }, longRaceName);
+  assert.ok(documentWidth <= width && bounds[0] >= 0 && bounds[0] <= bounds[1] && bounds[2] <= bounds[3] && bounds[3] <= width, name + " horizontal overflow");
+  assert.ok(hit && bounds[4] >= 44, name + " primary action is covered or too small");
+  assert.ok(longNameFits, name + " long race name is clipped horizontally");
+  await auditWidth(page, name);
+}
 
 async function auditWidth(page, name) {
   const metrics = await page.evaluate(() => ({ width: innerWidth, body: document.body.scrollWidth, document: document.documentElement.scrollWidth }));
@@ -24,20 +144,34 @@ async function main() {
     const context = await browser.newContext({ viewport: { width, height: 900 } });
     const page = await context.newPage();
     page.on("pageerror", (error) => report.errors.push(error.message));
+    await page.clock.install();
     const queries = [];
     let firstHomeFailure = true;
+    let firstSearchFailure = true;
     await page.route("**/marathon/api/**", async (route) => {
       const url = new URL(route.request().url());
       const pathName = url.pathname.replace("/marathon/api", "");
-    if (pathName === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
+      if (pathName === "/legal") return route.fulfill({ json: require("../../shared/legal-documents.json") });
       if (pathName === "/races") {
-        queries.push(url.searchParams.toString());
-        if (!url.searchParams.has("q") && firstHomeFailure) {
+        const params = url.searchParams;
+        const keyword = params.get("q");
+        queries.push(params.toString());
+        if (!keyword && firstHomeFailure) {
           firstHomeFailure = false;
-          await route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: "服务暂不可用" }) });
-          return;
+          return route.fulfill({ status: 503, json: { error: "服务暂不可用" } });
         }
-        await route.fulfill({ contentType: "application/json", body: JSON.stringify({ races: [{ id: "trail-online", name: "云上越野训练赛", raceDate: "2026-11-18", city: "杭州", province: "浙江", distances: ["half"], distanceLabels: ["半程马拉松"], kind: "trail", kindLabels: ["越野"], meet: "online", regStatus: "报名中", nodes: [], groups: [], guide: [], pacerSheets: [], routeSheets: [], distances: ["half"], open: true, daysLeft: 4 }], total: 1, pages: 1, page: 1 }) });
+        if (keyword === "待重试的赛事" && firstSearchFailure) {
+          firstSearchFailure = false;
+          return route.fulfill({ status: 503, json: { error: "服务暂不可用" } });
+        }
+        const archived = keyword === "往届北马";
+        const selectedConditions = params.get("kind") === "trail" && params.get("meet") === "online";
+        const name = archived ? "2022 北京马拉松（往届）" : keyword || (selectedConditions ? longRaceName : "云上越野训练赛");
+        const race = { id: archived ? "archived" : "trail-online", name, raceDate: archived ? "2022-11-06" : "2026-11-18", city: archived ? "北京" : "杭州", province: archived ? "北京" : "浙江", distances: ["half"], distanceLabels: ["半程马拉松"], kind: "trail", kindLabels: ["越野"], meet: "online", regStatus: archived ? "比赛结束" : "报名中", open: !archived, daysLeft: 4 };
+        const races = archived && params.get("status") !== "all" ? [] : [race];
+        return route.fulfill({ json: { races, total: races.length, pages: 1, page: 1 } });
+      } else if (pathName === "/race-catalog") {
+        await route.fulfill({ json: { races: [] } });
       } else if (pathName === "/reminders") {
         await route.fulfill({ contentType: "application/json", body: JSON.stringify({ reminders: [] }) });
       } else if (pathName.startsWith("/clubs/directory")) {
@@ -56,17 +190,8 @@ async function main() {
     await page.getByRole("alert").getByRole("button", { name: "重试" }).waitFor();
     await page.getByRole("alert").getByRole("button", { name: "重试" }).click();
     await page.locator(".home-results").getByText("云上越野训练赛", { exact: true }).waitFor();
-    await page.getByRole("button", { name: "更多筛选", exact: true }).click();
-    await page.getByRole("navigation", { name: "赛事形式" }).getByRole("button", { name: "线上赛" }).click();
-    await page.locator(".home-filter-sheet").waitFor({ state: "hidden" });
-    await page.getByRole("navigation", { name: "赛事类型" }).getByRole("button", { name: "越野赛" }).click();
-    const combined = queries.at(-1);
-    assert.equal(new URLSearchParams(combined).get("kind"), "trail");
-    assert.equal(new URLSearchParams(combined).get("meet"), "online");
-    await page.locator(".home-results").getByText("云上越野训练赛", { exact: true }).waitFor();
-    await page.getByText("正在加载赛历…").waitFor({ state: "hidden" });
-    report.checks.push({ name: "race track type and participation format combine independently", query: combined });
     await auditWidth(page, "home-" + width);
+    await checkHome(page, queries, width);
 
     await context.close();
   }

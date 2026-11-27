@@ -101,9 +101,12 @@ async function main() {
       assert.equal(new URL(page.url()).pathname, '/marathon/race-catalog/beijing');
       await page.goBack({ waitUntil: 'networkidle' });
       await page.locator('.home-catalog .catalog-race').first().waitFor();
+      await page.getByRole('button', { name: '搜赛事', exact: true }).click();
       await page.getByLabel('搜索赛事名称或城市').fill('北京');
+      await page.getByRole('button', { name: '搜索', exact: true }).click();
       await page.waitForFunction(() => !document.querySelector('.home-catalog'));
-      await page.getByLabel('搜索赛事名称或城市').fill('');
+      await page.getByRole('button', { name: '按条件找赛', exact: true }).click();
+      await page.getByRole('button', { name: '查找比赛', exact: true }).click();
       await page.locator('.home-catalog').waitFor();
       let unavailable = true;
       const homeFault = async route => unavailable ? route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: '测试注入：首页档案暂时不可用' }) }) : route.fallback();
