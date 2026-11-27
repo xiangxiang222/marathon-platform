@@ -130,7 +130,8 @@ async function main() {
   browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
   await check('390px homepage, personal profile and club views display usable seeded account content', async () => {
     const account = accounts[0], { ctx, page } = await context(account.actor, 390);
-    await page.goto(base + '/', { waitUntil: 'networkidle' }); await page.locator('.home-search').waitFor();
+    await page.goto(base + '/', { waitUntil: 'networkidle' });
+    await page.getByRole('button', { name: '搜赛事', exact: true }).click();
     await page.getByLabel('搜索赛事名称或城市').fill(account.me.plans[0].race.name); await page.locator('.home-search').getByRole('button', { name: '搜索', exact: true }).click();
     await page.getByRole('link').filter({ hasText: account.me.plans[0].race.name }).first().waitFor(); assert.ok(await page.locator('a[href*="/races/"]').count()); await snapshot(page, 'home');
     await page.goto(base + '/mine', { waitUntil: 'networkidle' }); await page.locator('.account-hero .nick').waitFor(); assert.equal(await page.locator('.nick').innerText(), account.actor.nickname); assert.ok(await page.locator('.account-stats').getByText(String(account.me.plans.length), { exact: true }).count()); assert.ok((await page.locator('.club-line').innerText()).includes(account.me.clubs[0].name)); await snapshot(page, 'mine');

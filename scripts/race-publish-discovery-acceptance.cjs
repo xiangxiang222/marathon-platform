@@ -97,14 +97,14 @@ async function main(){
    const opening=phase==='before-start',closed=phase==='after-cutoff';
    const payload={...original,race:{...original.race,registrationStatus:opening?'not_open':closed?'closed':'open',registrationLabel:opening?'报名未开始':closed?'报名已截止':'报名中',regStart:day(0)+'T10:00:00+08:00',deadline:day(0)+'T18:00:00+08:00',drawAt:day(1),open:!opening&&!closed,regStatus:opening?'未开始':closed?'已截止':'报名中',nodes:[{key:'regStart',label:'报名开始',at:day(0)+' 10:00',past:!opening,today:true},{key:'deadline',label:'报名截止',at:day(0)+' 18:00',past:closed,today:true},{key:'draw',label:'出签',at:day(1),past:false,today:false},{key:'race',label:'比赛日',at:day(40),past:false,today:false}]}};
    const handler=route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(payload)});await front.route(pattern,handler);await front.goto(origin+'/marathon/races/'+ids.open,{waitUntil:'networkidle'});
-   assert.equal((await front.locator('.pass-pill').textContent()).trim(),opening?'报名未开始':closed?'报名已截止':'报名中');
-   const moment=await front.locator('.official-moment').innerText();assert.ok(moment.includes(opening?'报名开始':closed?'出签':'报名截止'),phase+' next node '+moment);
+   assert.equal((await front.locator('.race-service-stage').textContent()).trim(),opening?'报名未开始':closed?'报名已截止':'报名中');
+   const moment=await front.locator('.race-service-next').innerText();assert.ok(moment.includes(opening?'报名开始':closed?'出签':'报名截止'),phase+' next node '+moment);
    assert.equal(await front.locator('.signup-qr-preview img').count(),1);assert.equal(await front.locator('.signup-entry a,.signup-entry summary').count(),0);await shot(front,'web-time-'+phase+'-390',{controls:true});await front.unroute(pattern,handler);
   }
  });
  await check('Long names, cover failures and guide images preserve access without overflow',async()=>{
-  await front.setViewportSize({width:320,height:568});await front.goto(origin+'/marathon/races/'+createdId,{waitUntil:'networkidle'});await front.locator('.race-cover img').waitFor();await shot(front,'web-long-cover-320',{controls:true});
-  await front.route('**/api/race-sheets/*',r=>r.abort());await front.reload({waitUntil:'networkidle'});await front.waitForFunction(()=>!document.querySelector('.race-cover img'));await shot(front,'web-cover-failed-320',{controls:true});await front.unroute('**/api/race-sheets/*');
+  await front.setViewportSize({width:320,height:568});await front.goto(origin+'/marathon/races/'+createdId,{waitUntil:'networkidle'});await front.locator('img.race-cover').waitFor();await shot(front,'web-long-cover-320',{controls:true});
+  await front.route('**/api/race-sheets/*',r=>r.abort());await front.reload({waitUntil:'networkidle'});await front.getByRole('button',{name:'重试封面',exact:true}).waitFor();await shot(front,'web-cover-failed-320',{controls:true});await front.unroute('**/api/race-sheets/*');
   await front.goto(origin+'/marathon/races/'+ids.open,{waitUntil:'networkidle'});await front.getByRole('tab',{name:'参赛指南',exact:true}).click();await shot(front,'web-guide-320',{controls:true});await front.getByRole('tab',{name:'我的成绩',exact:true}).click();await shot(front,'web-results-320',{controls:true});
  });
  await check('Guide images have retry and full image gallery closes at the same scroll position',async()=>{

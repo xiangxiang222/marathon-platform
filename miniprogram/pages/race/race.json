@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "赛事",
-  "navigationBarBackgroundColor": "#f5f5f5",
-  "backgroundColor": "#f5f5f5"
+  "navigationBarBackgroundColor": "#211a45",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#faf9f9"
 }

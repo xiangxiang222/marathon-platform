@@ -7,6 +7,34 @@ const content = require('../miniprogram/utils/race-detail-content');
 const { detailFixture } = require('./race-detail-mini-regression.cjs');
 const sample = require('./race-rich-detail-fixture.cjs');
 
+test('both clients keep dated early-bird and verified general deadlines with one next node', async () => {
+  const web = await import('../web/src/race-detail-content.js');
+  const now = Date.parse('2035-10-17T03:00:00+08:00');
+  const race = {
+    raceDate: '2035-11-04',
+    registrationStatus: 'open',
+    details: { registration: { verified: true, closesAt: '2035-10-19T10:00:00Z' } },
+    nodes: [
+      { key: 'race', label: '比赛日', at: '2035-11-04', past: false },
+      { key: 'bib', label: '号码公布', at: '', past: false },
+      { key: 'deadline', label: '早鸟截止', at: '2035-10-17 09:00', past: true, today: true },
+      { key: 'draw', label: '出签', at: '2035-10-20T01:00:00Z', past: false }
+    ]
+  };
+  for (const platform of [web, content]) {
+    const { rows, next } = platform.raceTimeline(race, now);
+    assert.deepEqual(rows.map(row => [row.label, row.at]), [
+      ['早鸟截止', '2035-10-17 09:00'], ['报名截止', '2035-10-19 18:00'],
+      ['出签', '2035-10-20 09:00'], ['比赛日', '2035-11-04']
+    ]);
+    assert.equal(rows[0].past, true, 'the supplied precise API cutoff takes precedence over the device clock');
+    assert.equal(next.key, 'deadline');
+    assert.equal(rows.filter(row => row.key === next.key).length, 1);
+    const cancelled = platform.raceTimeline({ ...race, registrationStatus: 'cancelled' }, now);
+    assert.ok(!cancelled.next, 'cancelled events do not promote future nodes');
+  }
+});
+
 test('full options preserve parent-child price and distinguish branded and actual distance', async () => {
   const groups = content.groupCards(sample);
   assert.equal(groups.length, 4);
@@ -54,6 +82,31 @@ test('guide sections and tables retain their full rows without leaking collectio
   assert.equal(parseGuide('| 原有编辑预览 | 保留段落 |\n| --- | --- |').every(block => block.kind === 'p'), true);
 });
 
+test('both clients link guide tasks to recorded content without repeating their jump targets', async () => {
+  const web = await import('../web/src/race-detail-content.js');
+  const race = {
+    pickup: '周五在北门二层凭证件领取参赛包。',
+    guideText: '## 报到\n周五在北门二层凭证件领取参赛包。\n\n## 参赛资格\n请携带报名所用证件。\n\n## 路线图\n长距离组从西门起跑。'
+  };
+  const blocks = parseGuide(race.guideText, { rich: true });
+  for (const platform of [web, content]) {
+    const layout = platform.guideLayout(race, blocks);
+    const { tasks, chapters } = platform.guideNavigation(layout, { hasBody: true, originals: true });
+    assert.equal(layout.pickup, '', 'verbatim pickup prose remains in the guide chapter alone');
+    const pickup = layout.chapters.find(item => item.label === '报到');
+    const route = layout.chapters.find(item => item.label === '路线图');
+    assert.deepEqual(tasks.map(item => item.id), [pickup.id, route.id]);
+    assert.ok(chapters.some(item => item.label === '参赛资格'));
+    assert.equal([...tasks, ...chapters].filter(item => item.id === pickup.id).length, 1);
+    assert.equal(tasks.some(item => item.id === 'pacers'), false, 'unknown pacer information creates no task');
+    const combined = parseGuide('## 领物与赛道\n周五从北门领物，周六从西门起跑。', { rich: true });
+    const combinedNav = platform.guideNavigation(platform.guideLayout({}, combined), { hasBody: true });
+    assert.deepEqual(combinedNav.tasks.map(item => item.label), ['领物与比赛日', '赛道与路线']);
+    assert.equal(new Set(combinedNav.tasks.map(item => item.kind || item.id)).size, 2, 'different task labels can share one authentic chapter and still have distinct control keys');
+    assert.deepEqual(combinedNav.chapters, []);
+  }
+});
+
 test('guide chapters take priority, repeated summaries disappear and distinct notes remain', async () => {
   const race = { guideText: '## 日程与领物\n11月20日领物。\n\n## 路线与补给\n| 组别 | 补给 |\n| --- | --- |\n| 亲子组 | 水<br>能量食品 |', pickup: '11月20日领物。', route: '路线仍以比赛日公告为准。', pacers: '', guide: [{ id: 81 }], details: { media: [{ sheetId: 81, caption: '日程与领物原图' }] } };
   const blocks = parseGuide(race.guideText, { rich: true });
@@ -80,7 +133,7 @@ test('guide chapters take priority, repeated summaries disappear and distinct no
 });
 
 test('closed registration remains a known status without a cutoff and QR previews only the selected entry', async () => {
-  const f = detailFixture({ ...sample, deadline: '', regStart: '' });
+  const f = detailFixture({ ...sample, deadline: '', regStart: '' }, true, '2026-11-17T12:00:00+08:00');
   f.page.onLoad({ id: sample.id }); await f.page.load();
   assert.equal(f.page.data.publicStatus, '报名已截止');
   assert.equal(f.page.data.phaseTitle, '报名已截止');
@@ -116,8 +169,12 @@ test('cancelled or invalid entries cannot show a registration QR even when a URL
   }
   const web = fs.readFileSync(require.resolve('../web/src/views/Race.vue'), 'utf8');
   const mini = fs.readFileSync(require.resolve('../miniprogram/pages/race/race.wxml'), 'utf8');
-  const webArea = web.slice(web.indexOf('class="official-actions signup-entry"'), web.indexOf('<div v-if="tabs.length"'));
-  const miniArea = mini.slice(mini.indexOf('class="official-qr signup-entry"'), mini.indexOf('<view class="race-follow-row">'));
+  const webStart = web.indexOf('class="official-actions signup-entry"');
+  const webArea = web.slice(webStart, web.indexOf('</section>', webStart));
+  assert.match(webArea, /signup-qr-preview/);
+  const miniStart = mini.indexOf('class="official-qr signup-entry"');
+  const miniArea = mini.slice(miniStart, mini.indexOf('<navigator wx:if="{{race.archiveId}}"', miniStart));
+  assert.match(miniArea, /bindtap="previewSignupQr"/);
   assert.doesNotMatch(webArea, /<details|<summary|href=|官方报名|复制链接/);
   assert.doesNotMatch(miniArea, /toggleSignupQr|copyLink|官方报名|展开二维码|复制链接/);
 });
