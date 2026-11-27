@@ -10,25 +10,29 @@ const memberships = Array.from({ length: 10 }, (_, i) => ({ id: 101 + i, name: i
 const directory = [{ id: 201, name: '发现同城的长名字周末跑步俱乐部', city: '杭州', memberCount: 52, leader: '发现跑友', joined: false }, { ...memberships[0] }];
 function instance(scenario = 'base') {
   let definition, override;
-  const calls = [], navigation = [], app = { globalData: { token: scenario === 'guest' ? '' : 'fixture-account-a' } };
+  const calls = [], navigation = [], scrolls = [], app = { globalData: { token: scenario === 'guest' ? '' : 'fixture-account-a' } };
   const request = async (url, method = 'GET', body) => {
     calls.push({ url, method, body });
     if (override) return override(url, method, body);
     if (url === '/me') return { user: { id: 1, leader: false }, clubs: scenario === 'empty' ? [] : clone(memberships) };
-    if (url.startsWith('/clubs/directory')) return { clubs: clone(directory), page: 1, pages: 1, total: directory.length };
+    if (url.startsWith('/clubs/directory')) return { clubs: clone(scenario === 'guest' ? directory.map(club => ({ ...club, joined: false })) : directory), page: 1, pages: 1, total: directory.length };
     throw Error('Unexpected display fixture request: ' + method + ' ' + url);
   };
-  const native = { navigateTo: options => navigation.push(options.url), switchTab: options => navigation.push(options.url), pageScrollTo() {}, showModal() {} };
+  const native = { navigateTo: options => navigation.push(options.url), switchTab: options => navigation.push(options.url), pageScrollTo: options => scrolls.push(options.selector), showModal() {} };
   const identity = { exports: {} };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'miniprogram/utils/club-identity.js'), 'utf8'), { module: identity, wx: native });
   vm.runInNewContext(fs.readFileSync(path.join(root, 'miniprogram/pages/clubs/clubs.js'), 'utf8'), { Page(value) { definition = value; }, getApp: () => app, wx: native, console, setTimeout, clearTimeout, require(name) { if (name === '../../utils/request') return { request, ready: () => Boolean(app.globalData.token) }; if (name === '../../utils/club-identity') return identity.exports; throw Error(name); } });
   const page = { ...definition, data: clone(definition.data), setData(patch) { for (const [key, value] of Object.entries(patch)) { const parts = key.replace(/\[(\d+)\]/g, '.$1').split('.'); let target = this.data; for (const part of parts.slice(0, -1)) target = target[part]; target[parts.at(-1)] = clone(value); } } };
-  return { page, calls, navigation, account(token) { app.globalData.token = token; }, handler(fn) { override = fn; } };
+  return { page, calls, navigation, scrolls, account(token) { app.globalData.token = token; }, handler(fn) { override = fn; } };
 }
 async function behavior() {
   const f = instance(), p = f.page;
   p.onShow(); await tick();
   assert.equal(p.data.clubs.length, 10); assert.equal(p.data.shownClubs.length, 4); assert.equal(p.data.mineExpanded, false);
+  p.openSection(event({id: 'my-run-clubs'}));
+  assert.equal(f.scrolls.at(-1), '#my-run-clubs');
+  p.openCreate();
+  assert.equal(f.navigation.at(-1), '/pages/club-create/club-create');
   p.toggleMineExpanded(); assert.equal(p.data.shownClubs.length, 10); assert.equal(p.data.mineExpanded, true);
   p.toggleMineExpanded(); assert.equal(p.data.shownClubs.length, 4);
   for (const [query, count, id] of [['杭州', 8], ['#109', 1, 109], ['西湖周末', 1, 109], ['没有加入过', 0]]) {
@@ -43,7 +47,30 @@ async function behavior() {
   late.handler(url => url === '/me' ? new Promise(resolve => { release = resolve; }) : Promise.resolve({ clubs: [], pages: 1 }));
   late.page.onShow(); await tick(); late.account('fixture-account-b'); late.handler(url => Promise.resolve(url === '/me' ? { user: { id: 2 }, clubs: [] } : { clubs: [], pages: 1 })); late.page.onShow(); await tick();
   release({ user: { id: 1 }, clubs: clone(memberships) }); await tick(); assert.equal(late.page.data.clubs.length, 0); assert.equal(late.page.data.shownClubs.length, 0); late.page.onUnload();
-  return { passed: true, checks: ['default four vertical memberships', 'expand/collapse all ten', 'search all memberships by name/city/club number', 'account change clears directory expansion and search', 'late prior-account memberships ignored'] };
+  const guest = instance('guest');
+  guest.page.onShow();
+  await tick();
+  assert.equal(guest.calls.filter(call => call.url === '/me').length, 0);
+  assert.equal(guest.page.data.openClubs.length, 2, 'a guest can browse the public directory');
+  guest.page.onSearchCity(event({}, '杭州'));
+  let failed = true;
+  guest.handler(url => {
+    assert.equal(new URL(url, 'https://fixture.example').searchParams.get('city'), '杭州');
+    if (failed) { failed = false; throw Error('目录暂不可用'); }
+    return { clubs: [directory[0]], page: 1, pages: 1, total: 1 };
+  });
+  await guest.page.search();
+  assert.equal(guest.page.data.directoryError, '目录暂不可用');
+  assert.match(guest.page.data.directoryContext, /杭州/);
+  guest.page.onSearchCity(event({}, '北京'));
+  await guest.page.retrySearch();
+  assert.equal(guest.page.data.directoryError, '');
+  guest.page.openClub(event({ id: 201 }));
+  assert.equal(guest.navigation.at(-1), '/pages/club-intro/club-intro?id=201');
+  guest.page.pickMode(event({mode: 'code'})); guest.page.onCode(event({}, ' RUN-TOGETHER ')); guest.page.join();
+  assert.equal(guest.navigation.at(-1), '/pages/club-intro/club-intro?code=RUN-TOGETHER');
+  guest.page.onUnload();
+  return { passed: true, checks: ['default four vertical memberships', 'expand/collapse all ten', 'search all memberships by name/city/club number', 'account change clears directory expansion and search', 'late prior-account memberships ignored', 'guest public discovery and submitted city retry'] };
 }
 module.exports = {
   instance, memberships, behavior,
@@ -68,10 +95,10 @@ module.exports = {
     });
     if (layout.rows.some((r, i, rows) => i && (r.top < rows[i - 1].bottom - 1 || Math.abs(r.left - rows[0].left) > 1))) errors.push('Memberships must stack vertically');
     if (scenario !== 'code' && layout.search && layout.city && layout.city.top < layout.search.bottom - 1) errors.push('City filter must be on a separate row below search');
-    if (await page.locator('.create-entry').count() !== 1) errors.push('Exactly one creation entry between memberships and discovery is required');
+    if (await page.locator('.club-services .create-entry').count() !== 1) errors.push('Exactly one creation entry is required in the service card');
     if (await page.locator('.create-form,.create-submit').count()) errors.push('Directory must navigate to the standalone creation form');
-    const entry = await page.locator('.create-card').boundingBox(), mine = await page.locator('.my-clubs').boundingBox(), discover = await page.locator('.discover').boundingBox();
-    if (!entry || !mine || !discover || entry.y < mine.y + mine.height - 1 || entry.y + entry.height > discover.y + 1) errors.push('Creation entry must sit after memberships and before discovery');
+    const hero = await page.locator('.club-hero').boundingBox(), services = await page.locator('.club-services').boundingBox(), entry = await page.locator('.create-entry').boundingBox(), discover = await page.locator('.discover').boundingBox();
+    if (!hero || !services || !entry || !discover || services.y >= hero.y + hero.height || entry.y + entry.height > discover.y + 1) errors.push('The service card must overlap the hero and put creation ahead of discovery');
     return errors;
   }
 };

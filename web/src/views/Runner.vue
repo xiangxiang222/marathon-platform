@@ -1,5 +1,5 @@
 <template>
-  <main class="runner-page" :class="{'devices-page':view==='devices'}">
+  <main class="runner-page" :class="{'devices-page':view==='devices','career-page':view==='career'}">
     <PageHeader v-if="view==='devices'" title="数据来源" class="devices-heading"><router-link to="/mine" class="devices-back" aria-label="返回我的"><RunnerIcon name="back"/></router-link></PageHeader>
     <header v-else class="runner-header"><router-link class="back" to="/mine" aria-label="返回我的"><RunnerIcon name="back"/></router-link><div><span class="eyebrow">我的跑步记录</span><h1>{{ current.title }}</h1></div><span class="header-icon"><RunnerIcon :name="view"/></span></header>
     <nav v-if="view!=='devices'" class="runner-nav" aria-label="跑者档案导航"><router-link v-for="item in views" :key="item.id" :to="{path:'/runner',query:{view:item.id}}" :class="{on:view===item.id}" :aria-current="view===item.id?'page':undefined">{{ item.short }}</router-link></nav>
@@ -15,8 +15,15 @@
       </template>
       <template v-else-if="view === 'career'">
 
-        <section class="runner-card career-hero"><div class="career-head"><div><p class="kicker">累计完赛</p><b class="career-count">{{ career.finished }}<small>场</small></b></div><div class="career-head-meta"><span>{{ career.raceYears || 0 }} 年参赛经历</span><b>{{ number(career.totalKm) }}<small> 公里</small></b></div></div><div class="career-splits"><div v-for="item in career.byDistance" :key="item.key"><b>{{ item.count }}</b><span>{{ item.label }}</span></div></div><div class="career-duration"><span>累计完赛时间</span><b>{{ career.totalTime || clock(career.totalSeconds) }}</b></div><div class="runner-achievement-entry"><span>{{ posterAvailable ? '已收录自己的完赛成绩' : '记录有效完赛成绩后可制作海报' }}</span><router-link v-if="posterAvailable" :to="{ path: '/achievement-poster', query: { returnTo: '/runner?view=career' } }">制作成绩海报 <RunnerIcon name="arrow" /></router-link><router-link v-else to="/">去记录成绩 ›</router-link></div></section>
-        <router-link class="runner-card history-entry" to="/history"><div><h2>我的跑史</h2><p>整理历史成绩、照片与单场回顾</p></div><RunnerIcon name="arrow"/></router-link>
+        <section class="runner-card career-hero" aria-labelledby="career-summary-title">
+          <h2 id="career-summary-title">完赛概览</h2>
+          <div class="career-head"><div><p class="kicker">累计完赛</p><b class="career-count">{{ career.finished }}<small>场</small></b></div><div class="career-head-meta"><span>{{ career.raceYears || 0 }} 年参赛经历</span><b>{{ number(career.totalKm) }}<small> 公里</small></b></div></div>
+          <div class="career-splits"><div v-for="item in career.byDistance" :key="item.key"><b>{{ item.count }}</b><span>{{ item.label }}</span></div></div><div class="career-duration"><span>累计完赛时间</span><b>{{ career.totalTime || clock(career.totalSeconds) }}</b></div>
+          <div class="career-services">
+            <router-link class="history-entry" to="/history">我的跑史 <RunnerIcon name="arrow" /></router-link>
+            <div class="runner-achievement-entry"><router-link v-if="posterAvailable" :to="{ path: '/achievement-poster', query: { returnTo: '/runner?view=career' } }">制作成绩海报 <RunnerIcon name="arrow" /></router-link><router-link v-else to="/">去记录成绩 ›</router-link></div>
+          </div>
+        </section>
         <section class="runner-card"><div class="section-heading"><h2>我的最好成绩</h2><span class="subtle">个人记录 · 未核验</span></div><router-link v-for="pb in career.pb" :key="pb.distance" class="personal-best" :to="'/races/'+pb.race.id"><div><span class="pb-tag">个人最好成绩</span><h3>{{ pb.distanceLabel }}</h3><p>{{ pb.race.name }}</p><span class="subtle">{{ pb.race.raceDate }}</span></div><strong>{{ pb.clock }}<RunnerIcon name="arrow"/></strong></router-link><div v-if="!career.pb?.length" class="inline-empty"><RunnerIcon name="career"/><p>每一个 PB，都从第一次完赛开始</p><router-link to="/" class="text-link">找到你的下一场比赛 ›</router-link></div></section>
         <section class="runner-card"><div class="section-heading"><h2>历年赛事趋势</h2><span class="subtle">历年赛事</span></div><nav class="metric-tabs" aria-label="赛事趋势指标"><button v-for="item in trendMetrics" :key="item.id" type="button" :class="{on:trendMetric===item.id}" :aria-pressed="trendMetric===item.id" @click="trendMetric=item.id">{{ item.label }}</button></nav><template v-if="career.trends?.length"><div v-if="trendMetric==='paceSec'" class="pace-history" role="group" aria-label="历年平均配速"><p class="pace-history-note">数值越小，配速越快<span>分 / 公里</span></p><div v-for="item in trendItems" :key="item.year" class="pace-history-row"><span>{{ item.year }} 年</span><strong>{{ pace(item.paceSec) }}</strong></div><p class="subtle">仅统计距离可计算的成绩；没有有效距离时显示 —。</p></div><RunnerBars v-else :items="trendItems" :field="trendMetric" :unit="trendUnit" :format="trendFormat" :caption="'历年' + trendMetrics.find(x=>x.id===trendMetric).label"/></template><p v-else class="blank-copy">添加完赛成绩后，这里会记录你的成长。</p></section>
         <section class="timeline-section"><div class="section-heading"><h2>参赛记录</h2><router-link class="text-link" to="/">添加成绩 <span>＋</span></router-link></div><div class="filter-row"><select v-model="year" aria-label="赛事年份"><option value="">全部年份</option><option v-for="item in career.years" :key="item" :value="String(item)">{{ item }} 年</option></select><nav class="kind-pills" aria-label="赛事类型"><button v-for="kind in kinds" :key="kind.id" type="button" :class="{on:kindFilter===kind.id}" @click="kindFilter=kind.id">{{ kind.label }}</button></nav></div><div v-if="!filteredResults.length" class="runner-card inline-empty"><RunnerIcon name="calendar"/><p>{{ data.results.length?'这个筛选下还没有记录':'从第一场比赛，写下你的跑步故事' }}</p><router-link to="/" class="text-link">去找一场比赛 ›</router-link></div><router-link v-for="result in filteredResults" :key="result.race.id+result.distance" class="timeline-item" :to="'/races/'+result.race.id"><div class="timeline-date"><b>{{ result.race.raceDate.slice(5,10).replace('-','.') }}</b><span>{{ result.race.raceDate.slice(0,4) }}</span></div><article><div class="timeline-top"><span>{{ result.distanceLabel }}</span><i v-if="isRoadPb(result)">PB</i></div><h3>{{ result.race.name }}</h3><p>{{ result.race.city || result.race.province || '比赛地点未记录' }}</p><div class="timeline-bottom"><strong>{{ result.clock }}</strong><span>{{ result.pace || '—' }} / km <RunnerIcon name="arrow"/></span></div></article></router-link></section>
@@ -248,4 +255,18 @@ load();
 .devices-page .skeleton i{height:56px;background:#f5f5f5}
 .devices-page .skeleton i:first-child{height:20px}
 @media(max-width:350px){.devices-page .devices-heading{margin-right:-12px;margin-left:-12px}.devices-page .device-row{gap:10px}.devices-page .device-brand-icon{width:56px;height:56px}.devices-page .device-status{padding-right:5px;padding-left:5px}}
+</style>
+
+<style scoped>
+.career-page .runner-header { background: linear-gradient(125deg,#e8def9,#d4c4f1 60%,#f8f5fc); color: #55388c; }
+.career-page .runner-header .back { width:44px;height:44px; }
+.career-page .career-hero { background:#fff;border:1px solid #e9e2f2; }
+.career-hero > h2 { margin:0 0 12px;font-size:17px;color:#2d2442; }
+.career-page .career-head { padding:14px;border-radius:14px;background:#f3eefc; }
+.career-page .career-count,.career-page .career-head-meta b { color:#55388c; }
+.career-services { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px; }
+.career-services .history-entry,.career-services .runner-achievement-entry a { display:flex;align-items:center;justify-content:center;gap:4px;min-height:44px;min-width:0;margin:0;padding:4px 6px;border-radius:10px;background:#f3eefc;color:#55388c;font-size:13px;line-height:1.4;text-align:center; }
+.career-services .runner-achievement-entry { display:block;margin:0;padding:0;border:0; }
+.career-services .runner-achievement-entry a { background:linear-gradient(100deg,#7453b5,#55388c);color:#fff; }
+.career-services svg { width:14px;height:14px;flex:none; }
 </style>

@@ -1,4 +1,4 @@
-<view class="page-header {{compact ? 'compact' : ''}}">
+<view class="page-header {{compact ? 'compact' : ''}} {{tone === 'lavender' ? 'lavender' : ''}}">
   <view style="height: {{statusBarHeight}}px;"></view>
   <view class="header-main" style="min-height: {{navHeight}}px; padding-right: {{headerRight}}px;">
     <view class="header-title">{{title}}</view>

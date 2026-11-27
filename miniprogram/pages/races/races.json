@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "赛历",
   "navigationStyle": "custom",
-  "navigationBarBackgroundColor": "#211c3f",
-  "backgroundColor": "#f6f7f9",
-  "navigationBarTextStyle": "white"
+  "navigationBarBackgroundColor": "#e8def9",
+  "backgroundColor": "#f7f6fa",
+  "navigationBarTextStyle": "black"
 }

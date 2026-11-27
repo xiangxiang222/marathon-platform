@@ -1,10 +1,6 @@
 {
   "navigationBarTitleText": "跑团",
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "page-header": "/components/page-header/page-header"
-  },
-  "navigationBarBackgroundColor": "#fff0f2",
-  "backgroundColor": "#f5f5f5",
+  "navigationBarBackgroundColor": "#e0d5f3",
+  "backgroundColor": "#f7f5fa",
   "navigationBarTextStyle": "black"
 }

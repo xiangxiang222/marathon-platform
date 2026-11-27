@@ -3,6 +3,7 @@
 const path = require('node:path');
 const { spawn } = require('node:child_process');
 const { fixture, race, event, settle } = require('./participation-mini-regression.cjs');
+const { inspectUiPalette } = require('./ui-palette-metrics.cjs');
 const root = path.resolve(__dirname, '..');
 const cases = [
   ...['wish', 'signup', 'confirmed', 'finished', 'private', 'guest', 'error', 'native-buttons'].map(scenario => ({ route: 'pages/race/race', scenario })),
@@ -35,6 +36,11 @@ async function prepare(route, initial, scenario) {
 }
 async function audit({ page, route, scenario, width }) {
   const errors = [], text = await page.locator('body').innerText();
+  const hero = { race: '.race-hero', races: '.home-search-area', calendar: '.calendar-scene' }[route.split('/').at(-1)];
+  if (hero) {
+    const { activityHero } = await page.evaluate(inspectUiPalette, hero);
+    if (!activityHero?.brightReadableSurface) errors.push('Bright lavender with readable dark text required: ' + JSON.stringify(activityHero));
+  }
   if (route === 'pages/race/race') {
     if (scenario !== 'guest') {
       if (await page.locator('.plan-stages .stage').count() !== 4) errors.push('Four participation stages must remain available');
@@ -45,7 +51,7 @@ async function audit({ page, route, scenario, width }) {
     } else if (!text.includes('登录后标记')) errors.push('Guest must retain login path');
     if (scenario === 'error' && !text.includes('状态保存失败')) errors.push('Save errors must stay readable');
   }
-  if (route === 'pages/races/races' && (!text.includes('已关注') || !text.includes('我 · 中签'))) errors.push('List must show independent follow and personal status');
+  if (route === 'pages/races/races' && (!text.includes('已关注') || !(await page.locator('.race-personal .my-state').allTextContents()).some(value => value.trim() === '中签'))) errors.push('List must show independent follow and personal status');
   if (route === 'pages/mine/mine' && (!text.includes('关注的比赛') || !text.includes('我的参赛计划'))) errors.push('Personal hub must separate follows from plans');
   if (route === 'pages/calendar/calendar' && (!text.includes('已关注') || !text.includes('我 · 确认参赛'))) errors.push('Calendar must retain personal status');
   return errors;

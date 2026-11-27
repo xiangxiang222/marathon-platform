@@ -1,39 +1,36 @@
 <view class="cal mini-calendar-calendar">
+  <view class="calendar-scene"><text>赛事日历</text><button bindtap="goToday">回到今天</button></view>
   <view class="calendar-board">
   <view class="nav">
-    <text bindtap="prev">‹</text>
+    <button bindtap="prev" aria-label="上个月">‹</button>
     <text class="ym">{{year}}年{{month}}月</text>
-    <text bindtap="next">›</text>
+    <button bindtap="next" aria-label="下个月">›</button>
   </view>
   <view class="week">
     <text wx:for="{{weeks}}" wx:key="*this" class="{{item === '日' || item === '六' ? 'end' : ''}}">{{item}}</text>
   </view>
   <view class="grid">
-    <view
+    <button
       wx:for="{{cells}}"
       wx:key="date"
       class="cell {{item.inMonth ? '' : 'out'}} {{item.today ? 'today' : ''}} {{item.picked ? 'picked' : ''}}"
       data-date="{{item.date}}"
-      data-in="{{item.inMonth}}"
+      disabled="{{!item.inMonth}}"
+      aria-label="{{item.date}} {{item.countText}}"
+      aria-pressed="{{item.picked}}"
       bindtap="pick"
     >
       <text class="num">{{item.mark}}</text>
       <text class="lunar">{{item.lunar}}</text>
       <text class="count">{{item.countText}}</text>
-    </view>
+    </button>
   </view>
   </view>
-  <view wx:if="{{message}}" class="err">{{message}}</view>
-  <view wx:if="{{ready && dayRaces.length}}" class="poster-btn" bindtap="makePoster">
-    <text class="poster-day">{{dayNum}}</text>
-    <view class="poster-copy">
-      <text class="poster-title">生成当天长图</text>
-      <text class="poster-sub">{{weekday}} · {{dayRaces.length}} 场</text>
-    </view>
-    <text class="poster-go">›</text>
-  </view>
-  <view class="list">
-    <view class="picked">{{pickedLabel}}</view>
+  <view class="list" aria-label="选中日期的赛事">
+    <view class="day-heading"><view><view class="picked">{{pickedLabel}}</view><text>{{weekday}}{{ready ? ' · ' + dayRaces.length + ' 场' : ''}}</text></view><button wx:if="{{ready && dayRaces.length}}" class="poster-btn" bindtap="makePoster">生成当天长图</button></view>
+    <view wx:if="{{message}}" class="err">{{message}}<button bindtap="load">重试</button></view>
+    <view wx:elif="{{!ready}}" class="empty">正在加载赛事…</view>
+    <view wx:if="{{posterError}}" class="err">{{posterError}}</view>
     <navigator wx:for="{{dayRaces}}" wx:key="id" url="/pages/race/race?id={{item.id}}" class="race">
       <view class="name">{{item.name}}</view>
       <view class="meta">{{item.meta}}</view>

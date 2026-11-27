@@ -208,19 +208,20 @@
       </section>
     </template>
     <template v-if="race && tab === 'news'">
-      <p v-if="!articles.length && !race.liveSheet && !alternatives.length" class="block quiet-state">还没有发布相关资讯</p>
-      <div v-if="articles.length" class="block">
-        <h2>相关资讯</h2>
-        <router-link v-for="item in articles" :key="item.id" class="mate" :to="'/news/' + item.id">
-          <span>{{ item.title }}</span>
-          <b>{{ item.publishedAt }}</b>
-        </router-link>
-      </div>
-      <div v-if="race.liveSheet" class="block">
-        <h2>直播</h2>
+      <section v-if="race.liveSheet" class="block race-news-live">
+        <h2>赛事直播</h2>
         <p class="src">扫组委会的二维码。</p>
         <RaceMedia :src="sheetSrc(race.liveSheet.id)" alt="直播二维码" @open="openSheet(race.liveSheet.id)" />
-      </div>
+      </section>
+      <section class="block race-news-feed" aria-labelledby="race-feed-title">
+        <h2 id="race-feed-title">本场赛事资讯</h2>
+        <p v-if="newsLoading" class="src" role="status">正在加载赛事资讯…</p>
+        <div v-else-if="newsError" class="race-feed-error" role="alert"><span>{{ newsError }}</span><button type="button" @click="loadNews">重试</button></div>
+        <router-link v-for="item in articles" :key="item.id" class="race-feed-item" :to="'/news/' + item.id">
+          <span><strong>{{ item.title }}</strong><small>{{ [item.publishedAt, item.source].filter(Boolean).join(' · ') }}</small></span><span aria-hidden="true">›</span>
+        </router-link>
+        <p v-if="!newsLoading && !newsError && !articles.length" class="src">还没有发布相关资讯</p>
+      </section>
       <div v-if="alternatives.length" class="block">
         <h2>同期还开着</h2>
         <p class="src">{{ alternativeNote }}</p>
@@ -231,7 +232,7 @@
       </div>
     </template>
     <template v-if="race && tab === 'result'">
-      <section v-if="officialResultLink" class="block official-result"><div class="race-section-heading"><h2>官方成绩与证书</h2><span>组委会查询入口</span></div><a class="jump" :href="officialResultLink.url" target="_blank" rel="noopener">前往官方查询</a></section>
+      <section v-if="officialResultLink" class="block official-result" aria-label="官方成绩与证书"><div class="race-section-heading"><h2>官方成绩与证书</h2></div><a class="jump" :href="officialResultLink.url" target="_blank" rel="noopener">前往官方查询 <span aria-hidden="true">↗</span></a></section>
       <section v-if="!ready" class="block quiet-state"><h2>把这一程，留给自己</h2><p>登录后记录完赛成绩、证书与比赛感受。</p><button type="button" class="primary" @click="loginForResult">登录后记录成绩</button></section>
       <div v-if="drawText" class="block">
         <h2>中签卡片</h2>
@@ -243,31 +244,35 @@
         <p v-if="drawNote" class="note">{{ drawNote }}</p>
         <p v-if="drawError" class="err">{{ drawError }}</p>
       </div>
-      <div v-if="ready" class="block">
-        <h2>我的手记成绩</h2>
-        <p class="src">个人手记与官方查询分开。手记标为未核验，可附证书或奖牌照片。</p>
-
-        <p v-for="item in myResults" :key="item.distance" class="src">{{ item.distanceLabel }} {{ item.clock }} · 配速 {{ item.pace }}<template v-if="item.pb"> · PB</template> · {{ item.verifyLabel }}</p>
-        <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
-        <img v-if="myResult && myResult.hasProof" class="proof" :src="proofSrc" alt="" />
-        <p v-if="myResult && myResult.proofLabel" class="src">{{ myResult.proofLabel }} · 未核验</p>
-        <div class="statuses">
+      <section v-if="ready" class="block personal-result-card" aria-labelledby="personal-result-title">
+        <h2 id="personal-result-title">我的手记成绩</h2>
+        <div class="statuses result-projects" role="group" aria-label="成绩项目">
           <button
-            v-for="(label, i) in race.distanceLabels"
-            :key="race.distances[i]"
+            v-for="project in resultProjects"
+            :key="project.key"
             type="button"
             class="status"
-            :class="{ on: distance === race.distances[i] }"
-            @click="pickDistance(race.distances[i])"
+            :class="{ on: distance === project.key }"
+            :aria-pressed="distance === project.key"
+            @click="chooseDistance(project.key)"
           >
-            {{ label }}
+            {{ project.label }}
           </button>
         </div>
-        <form class="result-form" @submit.prevent="saveResult">
+        <div v-if="myResult" class="result-summary">
+          <strong>{{ myResult.clock }}</strong>
+          <p class="src">{{ [myResult.distanceLabel, myResult.pace && '配速 ' + myResult.pace, myResult.pb && 'PB', myResult.verifyLabel || '未核验'].filter(Boolean).join(' · ') }}</p>
+          <p v-if="myResult.story">{{ myResult.story }}</p>
+          <img v-if="myResult.hasProof" class="proof" :src="proofSrc" :alt="myResult.proofLabel || '个人成绩凭证'" />
+          <p v-if="myResult.proofLabel" class="src">{{ myResult.proofLabel }} · 未核验</p>
+        </div>
+        <p v-else class="result-summary src">当前项目还没有成绩</p>
+        <form v-if="canRecordResult" class="result-form" @submit.prevent="saveResult">
           <label>完赛用时<input v-model="clock" aria-label="完赛用时" placeholder="3:29:59" inputmode="numeric" required /></label>
           <label>比赛手记<span>选填</span><input v-model="story" aria-label="比赛手记" maxlength="200" placeholder="这场想记的一句" /></label>
           <button class="primary" type="submit">记下成绩</button>
         </form>
+        <p v-else-if="myResult" class="src">该项目已从本届赛事资料移除，仍可查看原有记录。</p>
         <div v-if="myResult" class="proof-actions">
           <label>证书照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onProof('certificate', $event)" /></label>
           <label>奖牌照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onProof('medal', $event)" /></label>
@@ -275,7 +280,7 @@
           <button class="undo" type="button" @click="removeResult">去掉这项成绩</button>
         </div>
         <p v-if="resultMessage" class="err">{{ resultMessage }}</p>
-      </div>
+      </section>
     </template>
     </div>
     <dialog ref="imageDialog" class="race-image-viewer" aria-label="赛事图片预览" @cancel.prevent="closeViewer" @click.self="closeViewer">
@@ -475,6 +480,14 @@ const drawError = ref("");
 const myResult = ref(null);
 const myResults = ref([]);
 const distance = ref("");
+const canRecordResult = computed(() => race.value?.distances?.includes(distance.value) ?? false);
+const resultProjects = computed(() => {
+  const projects = new Map((race.value?.distances || []).map((key, index) => [key, race.value.distanceLabels?.[index] || key]));
+  for (const item of myResults.value) {
+    if (!projects.has(item.distance)) projects.set(item.distance, item.distanceLabel || item.distance);
+  }
+  return Array.from(projects, ([key, label]) => ({ key, label }));
+});
 const clock = ref("");
 const story = ref("");
 const ready = ref(!!localStorage.getItem("marathon_token"));
@@ -483,9 +496,26 @@ const resultMessage = ref("");
 const note = ref("");
 const copyError = ref("");
 const articles = ref([]);
+const newsLoading = ref(false), newsError = ref('');
 const loading = ref(true);
 const loadError = ref("");
-let loadSequence = 0;
+let loadSequence = 0, newsSequence = 0;
+
+async function loadNews() {
+  const id = String(route.params.id || '');
+  const sequence = ++newsSequence;
+  const current = () => !disposed && sequence === newsSequence && id === String(route.params.id || '');
+  newsLoading.value = true;
+  newsError.value = '';
+  try {
+    const data = await api('/races/' + id + '/news');
+    if (current()) articles.value = data.news || [];
+  } catch (err) {
+    if (current()) newsError.value = err.message || '赛事资讯暂时无法加载';
+  } finally {
+    if (current()) newsLoading.value = false;
+  }
+}
 
 async function load(options = {}) {
   const id = String(route.params.id || "");
@@ -494,12 +524,8 @@ async function load(options = {}) {
   loading.value = true;
   loadError.value = "";
   try {
-    const [data, news] = await Promise.all([
-      api("/races/" + id),
-      api("/races/" + id + "/news").catch(() => ({ news: [] }))
-    ]);
+    const data = await api("/races/" + id);
     if (disposed || sequence !== loadSequence || id !== String(route.params.id || "") || token !== localStorage.getItem('marathon_token')) return;
-    articles.value = news.news || [];
     race.value = { ...data.race, nodes: data.race.nodes || [], distanceLabels: data.race.distanceLabels || [], distances: data.race.distances || [], kindLabels: data.race.kindLabels || [], groups: data.race.groups || [], guide: data.race.guide || [], pacerSheets: data.race.pacerSheets || [] };
     myStatus.value = data.myStatus || '';
     planStage.value = stageFor(myStatus.value);
@@ -545,10 +571,14 @@ function pickDistance(next) {
   distance.value = next;
   const found = myResults.value.find((item) => item.distance === next) || null;
   myResult.value = found;
-  if (found) {
-    clock.value = found.clock;
-    story.value = found.story || "";
-  }
+  clock.value = found?.clock || '';
+  story.value = found?.story || '';
+}
+
+function chooseDistance(next) {
+  if (next === distance.value) return;
+  resultMessage.value = '';
+  pickDistance(next);
 }
 
 const proofSrc = computed(() => (race.value && myResult.value && myResult.value.hasProof ? resultProofSrc(race.value.id, myResult.value.distance) : ""));
@@ -724,6 +754,7 @@ async function removeProof() {
 }
 
 async function saveResult() {
+  if (!canRecordResult.value) return;
   resultMessage.value = "";
   try {
     await api("/me/races/" + route.params.id + "/result", {
@@ -811,6 +842,8 @@ watch(
     companionNote.value = ''; companionDraft.value = ''; sharingError.value = ''; sharingMessage.value = '';
     myStatus.value = ''; clubs.value = []; cards.value = [];
     race.value = null;
+    articles.value = [];
+    loadNews();
     message.value = "";
     distance.value = "";
     clock.value = "";
@@ -829,6 +862,7 @@ watch(
 
 onMounted(() => {
   const id = String(route.params.id || "");
+  loadNews();
   load().then(async () => {
     if (ready.value && route.query.follow === '1' && id === String(route.params.id || '')) {
       const saved = await planAction('/follow', { following: true });
