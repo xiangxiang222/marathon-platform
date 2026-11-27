@@ -6,6 +6,7 @@ const { chromium } = require('playwright-core');
 const root = path.resolve(__dirname, '..'), out = process.env.RACE_RICH_OUTPUT || path.join(root, 'design/previews/race-rich-details-20261117/web');
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'race-rich-ui-'));
 const sample = require('./race-rich-detail-fixture.cjs');
+const { inspectUiPalette } = require('./ui-palette-metrics.cjs');
 const qr = require('../server/node_modules/qrcode');
 let vite, browser, apiServer, savedDb, localApi;
 let persistedPayload;
@@ -65,14 +66,24 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
   report.raceId = current.race.id;
   report.source = process.env.RACE_RICH_PILOT_JSON || process.env.RACE_RICH_API || 'scripts/race-rich-detail-fixture.cjs';
   const png = await qr.toBuffer('https://reg.zuicool.com/verified-fixture-entry', { margin: 4, width: 288 });
+  let calendarFailure = '', newsFailure = false;
+  const requestedMonths = [];
   await ctx.route('**/marathon/api/**', async route => {
     const url = new URL(route.request().url());
+    if (url.pathname.endsWith('/api/races') && url.searchParams.has('month')) {
+      const month = url.searchParams.get('month');
+      requestedMonths.push(month);
+      const date = month === '2035-10' ? month + '-16' : month + '-01';
+      const races = [{ ...sample, id: 'calendar-fixture', raceDate: date, name: '北京城市绿道马拉松暨国际长距离公路耐力邀请赛', distanceLabels: ['全程马拉松'], myStatus: '已缴费' }];
+      return route.fulfill({ status: month === calendarFailure ? 503 : 200, json: month === calendarFailure ? { error: '当前月份加载失败' } : { races } });
+    }
     if (current.race.id !== 'race-service-fixture' && (localApi || process.env.RACE_RICH_API) && (url.pathname.includes('/race-sheets/') || url.pathname.endsWith('/signup-qr'))) {
       const remote = new URL(url.pathname + url.search, localApi || new URL(process.env.RACE_RICH_API).origin);
       const response = await fetch(remote); return route.fulfill({ status: response.status, contentType: response.headers.get('content-type') || 'image/png', body: Buffer.from(await response.arrayBuffer()) });
     }
     if (url.pathname.includes('/race-sheets/') || url.pathname.endsWith('/signup-qr')) return route.fulfill({ status: 200, contentType: 'image/png', body: png });
-    const data = /\/news$/.test(url.pathname) ? { news: [] } : /\/outings$/.test(url.pathname) ? { outings: [] } : { statuses: [], myResults: [], clubs: [], cards: [], ...current };
+    if (/\/news$/.test(url.pathname) && newsFailure) return route.fulfill({ status: 503, json: { error: '赛事资讯暂时无法加载' } });
+    const data = /\/news$/.test(url.pathname) ? { news: current.feed || [] } : /\/outings$/.test(url.pathname) ? { outings: [] } : { races: [], total: 0, statuses: [], myResults: [], clubs: [], cards: [], ...current };
     return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(data) });
   });
   const page = await ctx.newPage(); page.on('pageerror', error => report.errors.push(error.message));
@@ -192,6 +203,120 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
     } finally { await page.evaluate(() => localStorage.removeItem('marathon_token')); }
   });
   assert.deepEqual(serviceFailures, [], 'race service browser scenarios');
+  const deskFailures = [];
+  const deskCheck = (name, check) => serviceCheck(name, check, deskFailures);
+  async function brightSurface(selector) {
+    await page.locator(selector).waitFor();
+    const { activityHero } = await page.evaluate(inspectUiPalette, selector);
+    assert.ok(activityHero?.brightReadableSurface, selector + ' requires a bright background with readable dark text: ' + JSON.stringify(activityHero));
+  }
+  await deskCheck('Home opens with a bright search-card scene and a high-contrast title', async () => {
+    await page.goto(origin + '/marathon/', { waitUntil: 'networkidle' });
+    await page.locator('.race-finder').waitFor();
+    await brightSurface('.home-brand');
+    await shot('home-bright-390');
+    await page.setViewportSize({ width: 320, height: 844 });
+    await shot('home-bright-320');
+    await page.setViewportSize({ width: 390, height: 844 });
+  });
+  await deskCheck('Race detail uses lavender without a photo and reserves white type for photo covers', async () => {
+    await openService();
+    await brightSurface('.race-hero');
+    await shot('race-bright-390');
+    await page.setViewportSize({ width: 320, height: 844 });
+    await shot('race-bright-320');
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openService({ coverSheet: { id: 1, url: '/marathon/api/race-sheets/1' } });
+    await page.locator('.race-cover').waitFor();
+    assert.equal(await page.locator('#race-title').evaluate(element => getComputedStyle(element).color), 'rgb(255, 255, 255)');
+  });
+  await deskCheck('Calendar keeps strong contrast on a bright scene behind the month controls', async () => {
+    await page.goto(origin + '/marathon/calendar', { waitUntil: 'networkidle' });
+    await page.locator('.calendar-race-row').waitFor();
+    await brightSurface('.calendar .topbar');
+  });
+  await deskCheck('Calendar returns to the Beijing current day, scopes retry and hides stale rows', async () => {
+    await page.goto(origin + '/marathon/calendar', { waitUntil: 'networkidle' });
+    const selected = page.getByRole('region', { name: '选中日期的赛事', exact: true });
+    await page.locator('.calendar-race-row').waitFor();
+    assert.equal(await selected.count(), 1);
+    assert.match(await selected.innerText(), /10月16日[\s\S]*已缴费/);
+    const today = page.getByRole('button', { name: '回到今天', exact: true });
+    assert.equal(await today.count(), 1);
+    calendarFailure = '2035-11';
+    await page.getByRole('button', { name: '下个月', exact: true }).click();
+    const error = page.getByRole('alert'); await error.waitFor();
+    assert.equal(await page.locator('.calendar-race-row').count(), 0);
+    assert.equal(await selected.getByRole('button', { name: '生成当天长图', exact: true }).count(), 0);
+    calendarFailure = '';
+    await error.getByRole('button', { name: '重试', exact: true }).click();
+    await page.locator('.calendar-race-row').waitFor();
+    assert.deepEqual(requestedMonths.slice(-2), ['2035-11', '2035-11']);
+    await today.click(); await page.waitForFunction(() => document.querySelector('.day-races')?.textContent.includes('10月16日'));
+    assert.equal(requestedMonths.at(-1), '2035-10');
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      const accessibleCells = await page.locator('.cell:not([disabled])').evaluateAll(nodes => nodes.every(node => node.getBoundingClientRect().width >= 44 && node.getBoundingClientRect().height >= 44));
+      assert.ok(accessibleCells, 'weekday grid touches are at least 44x44');
+      assert.ok(await page.locator('.calendar-board .month button').evaluateAll(nodes => nodes.every(node => {
+        const box = node.getBoundingClientRect();
+        return node.contains(document.elementFromPoint(box.x + box.width / 2, box.y + 2));
+      })), 'the overlapping board must not place the month buttons underneath the header');
+      await shot('calendar-' + width);
+    }
+  });
+  await deskCheck('Race news exposes the independent failed feed and retries in the same tab', async () => {
+    newsFailure = true;
+    try {
+      await openService({}, '?tab=news');
+      const feed = page.getByRole('region', { name: '本场赛事资讯', exact: true });
+      assert.equal(await feed.count(), 1);
+      assert.match(await feed.innerText(), /赛事资讯暂时无法加载/);
+      assert.equal(await page.locator('.race-service-card').count(), 1);
+      current.feed = [{ id: 91, title: '组委会发布本届比赛日交通与起跑安排', source: '组委会', publishedAt: '2035-10-15' }];
+      newsFailure = false;
+      await feed.getByRole('button', { name: '重试', exact: true }).click();
+      assert.equal(await feed.getByRole('link', { name: /比赛日交通/ }).getAttribute('href'), '/marathon/news/91');
+      for (const width of [320, 390]) {
+        await page.setViewportSize({ width, height: 844 });
+        await shot('race-news-' + width);
+      }
+    } finally { newsFailure = false; }
+  });
+  await deskCheck('Personal results use the selected project, with an independent official query', async () => {
+    await page.evaluate(() => localStorage.setItem('marathon_token', 'fixture-runner'));
+    try {
+      await openService({ distances: ['full', 'half'], distanceLabels: ['全程马拉松', '半程马拉松'], links: [result] }, '?tab=result');
+      current.myResults = [
+        { distance: 'full', distanceLabel: '全程马拉松', clock: '03:29:59', story: '全马独立记录', pace: '4:59', verifyLabel: '未核验' },
+        { distance: '10k', distanceLabel: '10公里', clock: '00:49:59', verifyLabel: '未核验' }
+      ];
+      await page.reload({ waitUntil: 'networkidle' });
+      const personal = page.getByRole('region', { name: '我的手记成绩', exact: true });
+      const time = page.getByRole('textbox', { name: '完赛用时', exact: true });
+      assert.equal(await time.inputValue(), '03:29:59');
+      await page.getByRole('button', { name: '半程马拉松', exact: true }).click();
+      assert.equal(await time.inputValue(), '', 'a new project must not take the previous time');
+      assert.equal(await page.getByRole('textbox', { name: '比赛手记', exact: true }).inputValue(), '');
+      assert.match(await personal.innerText(), /当前项目还没有成绩/);
+      assert.equal(await personal.getByRole('button', { name: /证书照片|奖牌照片/ }).count(), 0);
+      const official = page.getByRole('region', { name: '官方成绩与证书', exact: true });
+      assert.equal(await official.getByRole('link').getAttribute('href'), result.url);
+      await page.getByRole('button', { name: '全程马拉松', exact: true }).click();
+      assert.equal(await time.inputValue(), '03:29:59');
+      for (const width of [320, 390]) {
+        await page.setViewportSize({ width, height: 844 });
+        assert.ok(await personal.locator('.result-projects button').evaluateAll(nodes => nodes.every(node => node.getBoundingClientRect().height >= 44)), 'result projects must remain 44px tall');
+        await shot('race-results-' + width);
+      }
+      const previous = personal.getByRole('button', { name: '10公里', exact: true });
+      assert.equal(await previous.count(), 1, 'previously recorded projects stay accessible after the organizer changes the published projects');
+      await previous.click();
+      assert.match(await personal.innerText(), /00:49:59/);
+      assert.equal(await time.count(), 0, 'the unavailable project remains readable without submitting to an unsupported distance');
+    } finally { await page.evaluate(() => localStorage.removeItem('marathon_token')); }
+  });
+  assert.deepEqual(deskFailures, [], 'calendar, race news and results scenarios');
   const bodyFailures = [];
   const bodyCheck = (name, check) => serviceCheck(name, check, bodyFailures);
   await bodyCheck('The timeline keeps independently labeled early-bird history and shares the next dated node with the service card', async () => {

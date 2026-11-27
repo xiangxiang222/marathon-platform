@@ -89,7 +89,9 @@ async function main() {
     assert.equal(await p.locator('.person-row').count(), 20); assert.ok((await p.locator('.person-row').first().innerText()).includes(women.profiles[0].name));
     await p.locator('.person-row').first().click(); await p.locator('.profile-hero h1').waitFor();
     assert.equal(await p.locator('.profile-hero h1').innerText(), women.profiles[0].name);
-    assert.ok((await p.locator('.profile-article .guide-md').innerText()).length>200); assert.equal(await p.locator('a[href^="http"]').count(),0);
+    assert.ok((await p.locator('.profile-article .guide-md').innerText()).length>200);
+    const links = await p.locator('a[href^="http"]').evaluateAll(items => items.map(link => ({ url: link.href, citation: !!link.closest('.source-box') })));
+    assert.ok(links.length > 0 && links.every(link => link.citation && new URL(link.url).protocol === 'https:'), 'Published athlete sources are HTTPS citations in the source section');
   });
   await check('Pacer profiles match collected evidence without claiming a national ranking', async () => {
     const p = actorBrowser.p; await p.goto(base + '/news?tab=pacer', { waitUntil: 'networkidle' }); await p.locator('.person-row').nth(pacers.profiles.length - 1).waitFor();
@@ -145,6 +147,10 @@ async function main() {
     assert.ok(layout.firstRowBottom < 700, JSON.stringify(layout)); assert.equal(layout.hasPromo, false);
     assert.ok(Math.max(...layout.controls.map(x => x.center)) - Math.min(...layout.controls.map(x => x.center)) < 3, 'Gender filters stay on one row');
     assert.ok(layout.controls.slice(0, 2).every(x => x.height >= 44), 'Gender filters have 44px tap targets');
+    const method = p.locator('.ranking-note');
+    assert.equal(await method.locator('p').isVisible(), false);
+    await method.locator('summary').click();
+    assert.match(await method.locator('p').innerText(), /PB/);
     await mobile.ctx.close();
   });
   await check('Unavailable content hides counts and stale notes, offers a friendly retry, then recovers real profiles', async () => {

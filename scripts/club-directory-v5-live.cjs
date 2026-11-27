@@ -31,25 +31,43 @@ async function main() {
   }
   db.prepare('INSERT INTO club_members(club_id,user_id,joined_at) VALUES(?,?,?)').run(clubs[9].id, other.user.id, '2026-11-01T00:00:00Z');
   browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--no-sandbox'] });
-  for (const width of [320, 390]) {
+  for (const width of [320, 390, 1024]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
     await context.addInitScript(({ token, nickname }) => { localStorage.setItem('marathon_token', token); localStorage.setItem('marathon_name', nickname); }, { token: actor.token, nickname: actor.user.nickname });
     await context.route('**/*', route => /^(https?:\/\/(127\.0\.0\.1|localhost)(:|\/)|data:|blob:)/.test(route.request().url()) ? route.continue() : route.abort());
     const page = await context.newPage(); page.on('pageerror', error => report.errors.push(error.message));
     const mine = () => page.locator('.my-clubs .my-club');
-    await check(width + 'px: memberships stack vertically and the creation entry sits before discovery', async () => {
+    await check(width + 'px: the hero and overlapping service card lead to current memberships and creation', async () => {
+      await page.goto(base + '/clubs', { waitUntil: 'networkidle' });
+      await mine().first().waitFor();
+      const services = page.getByRole('region', { name: '跑团服务', exact: true });
+      assert.equal(await services.count(), 1, 'loaded directory needs a visible service card');
+      assert.equal(await services.getByRole('link', { name: '查看我的跑团', exact: true }).getAttribute('href'), '#my-run-clubs');
+      assert.match(await services.innerText(), /已加入 10 个跑团/);
+      const hero = await page.locator('.club-hero').boundingBox(), card = await services.boundingBox();
+      assert.ok(hero.height > 80 && card.y < hero.y + hero.height && card.y > hero.y + 50);
+      await services.getByRole('link', { name: '查看我的跑团', exact: true }).click();
+      assert.equal(await page.locator('#my-run-clubs').isVisible(), true);
+    });
+    await check(width + 'px: memberships stack vertically with one creation entry in the service card', async () => {
       await page.goto(base + '/clubs', { waitUntil: 'networkidle' }); await mine().first().waitFor(); assert.equal(await mine().count(), 4);
-      assert.equal(await page.locator('.clubs-header a[href$="/clubs/new"],.discover-feature').count(), 0); assert.equal(await page.locator('a[href$="/clubs/new"]').count(), 1);
+      assert.equal(await page.locator('.club-services a[href$="/clubs/new"]').count(), 1); assert.equal(await page.locator('a[href$="/clubs/new"]').count(), 1);
       const order = await page.evaluate(() => {
         const mine = document.querySelector('.my-clubs'), create = document.querySelector('.create-club'), discover = document.querySelector('.discover');
-        return { afterMine: Boolean(mine.compareDocumentPosition(create) & Node.DOCUMENT_POSITION_FOLLOWING), beforeDiscovery: Boolean(create.compareDocumentPosition(discover) & Node.DOCUMENT_POSITION_FOLLOWING), separated: create.getBoundingClientRect().bottom <= discover.getBoundingClientRect().top };
+        return { beforeMine: Boolean(create.compareDocumentPosition(mine) & Node.DOCUMENT_POSITION_FOLLOWING), beforeDiscovery: Boolean(create.compareDocumentPosition(discover) & Node.DOCUMENT_POSITION_FOLLOWING), separated: create.getBoundingClientRect().bottom <= discover.getBoundingClientRect().top };
       });
-      assert.deepEqual(order, { afterMine: true, beforeDiscovery: true, separated: true });
+      assert.deepEqual(order, { beforeMine: true, beforeDiscovery: true, separated: true });
       assert.equal(await page.locator('input[name="name"],.create-form').count(), 0, 'The directory should open a dedicated creation page');
       const boxes = await mine().evaluateAll(rows => rows.map(row => { const r = row.getBoundingClientRect(); return { left: r.left, top: r.top, bottom: r.bottom }; })); assert.ok(boxes.every((r, i) => !i || r.top >= boxes[i - 1].bottom - 1 && Math.abs(r.left - boxes[0].left) < 2));
       const layout = await page.evaluate(() => { const search = document.querySelector('.search-row .club-search').getBoundingClientRect(), city = document.querySelector('.city-filter').getBoundingClientRect(); return { search: { top: search.top, bottom: search.bottom, width: search.width }, city: { top: city.top, bottom: city.bottom, width: city.width } }; }); assert.ok(layout.city.top >= layout.search.bottom - 1, 'City filter must have its own row');
-      const visual = await page.evaluate(() => ({ background:getComputedStyle(document.querySelector('.clubs-page')).backgroundColor, headerColor:getComputedStyle(document.querySelector('.clubs-header')).color, buttonBorder:getComputedStyle(document.querySelector('.club-quick-actions a span')).borderTopWidth, target:document.querySelector('.club-quick-actions a').getBoundingClientRect().width, actionBackground:getComputedStyle(document.querySelector('.result-action')).backgroundColor }));
-      assert.equal(visual.background,'rgb(245, 245, 245)'); assert.equal(visual.headerColor,'rgb(26, 26, 26)'); assert.equal(visual.buttonBorder,'1px'); assert.ok(visual.target>=44); assert.equal(visual.actionBackground,'rgba(0, 0, 0, 0)');
+      const visual = await page.evaluate(() => {
+        const hero = getComputedStyle(document.querySelector('.club-hero'));
+        const stops = [...hero.backgroundImage.matchAll(/rgba?\((\d+),\s*(\d+),\s*(\d+)/g)].map(match => match.slice(1, 4).map(Number));
+        const title = hero.color.match(/\d+/g).slice(0, 3).map(Number);
+        return { stops, title, background: getComputedStyle(document.querySelector('.club-services')).backgroundColor, buttonBorder: getComputedStyle(document.querySelector('.club-quick-actions a span')).borderTopWidth, target: document.querySelector('.club-quick-actions a').getBoundingClientRect().width, actionBackground: getComputedStyle(document.querySelector('.result-action')).backgroundColor };
+      });
+      assert.ok(visual.stops.length >= 2 && visual.stops.every(stop => Math.min(...stop) >= 200) && Math.max(...visual.title) < 130, 'club header uses pale lavender and a dark title for contrast');
+      assert.equal(visual.background,'rgb(255, 255, 255)'); assert.equal(visual.buttonBorder,'1px'); assert.ok(visual.target>=44); assert.equal(visual.actionBackground,'rgba(0, 0, 0, 0)');
       await screenshot(page, 'web-default');
     });
     await check(width + 'px: expand all memberships, search the complete list, and enter a joined club', async () => {
@@ -57,11 +75,15 @@ async function main() {
       const search = page.getByRole('textbox', { name: '搜索我的跑团', exact: true });
       for (const [query, count, title] of [['杭州', 8], ['#' + clubs[8].id, 1, clubs[8].name], ['西湖周末', 1, clubs[8].name], ['找不到的跑团', 0]]) { await search.fill(query); await page.waitForFunction(count => document.querySelectorAll('.my-clubs .my-club').length === count, count); if (title) assert.match(await mine().innerText(), new RegExp(title)); }
       await search.fill('#' + clubs[8].id); await screenshot(page, 'web-membership-search');
+      const title = mine().locator('h3');
+      assert.equal(await title.textContent(), clubs[8].name);
+      assert.equal(await title.evaluate(el => el.scrollWidth <= el.clientWidth && getComputedStyle(el).whiteSpace !== 'nowrap'), true);
       if(width===320){const enlarged=await page.addStyleTag({content:'.my-clubs .club-copy h3,.club-hit .club-copy strong{font-size:18px!important}.my-clubs .club-copy small{font-size:14px!important}'});await screenshot(page,'web-large-text-long-name');await enlarged.evaluate(node=>node.remove());} await mine().locator('a.club-main').click(); await page.waitForURL(new RegExp('/clubs/' + clubs[8].id + '$')); await page.getByRole('heading', { name: clubs[8].name, exact: true }).waitFor();
       await page.goto(base + '/clubs', { waitUntil: 'networkidle' }); assert.equal(await mine().count(), 4);
     });
     await check(width + 'px: discovery name, city and invitation search retain working routes', async () => {
       await page.getByRole('textbox', { name: '搜索跑团', exact: true }).fill('西湖'); await page.getByRole('textbox', { name: '筛选活动城市', exact: true }).fill('北京'); await page.locator('.club-search').getByRole('button', { name: '搜索', exact: true }).click(); await page.waitForFunction(() => document.querySelectorAll('.club-hit').length === 1); assert.match(await page.locator('.club-hit').innerText(), /北京/); await screenshot(page, 'web-discovery-search');
+      assert.match(await page.locator('.directory-context').innerText(), /西湖.*北京/);
       await page.getByRole('tab', { name: '口令加入', exact: true }).click(); await page.getByRole('textbox', { name: '跑团口令', exact: true }).fill('V4-FIXTURE-8'); await page.locator('.club-search').getByRole('button', { name: '查看', exact: true }).click(); await page.waitForURL(/\/clubs\/invite\/V4-FIXTURE-8$/); await page.getByRole('heading', { name: clubs[8].name, exact: true }).waitFor();
     });
     await check(width + 'px: account switching clears the expanded list and search before showing the new memberships', async () => {
@@ -77,9 +99,37 @@ async function main() {
     const context = await browser.newContext({ viewport: { width: 390, height: 900 } }); const page = await context.newPage();
     page.on('pageerror', error => report.errors.push(error.message)); await page.goto(base + '/clubs', { waitUntil: 'networkidle' });
     const entry = page.locator('.create-club'); await entry.waitFor();
+    const services = page.getByRole('region', { name: '跑团服务', exact: true });
+    assert.equal(await services.getByRole('link', { name: '登录查看我的跑团', exact: true }).getAttribute('href'), '/marathon/mine');
+    const results = page.locator('.club-results');
+    await results.getByRole('link', { name: /^查看介绍/ }).first().waitFor();
     assert.ok(await entry.evaluate(node => Boolean(node.compareDocumentPosition(document.querySelector('.discover')) & Node.DOCUMENT_POSITION_FOLLOWING)));
     await screenshot(page, 'web-guest-directory'); await entry.click(); await page.waitForURL(/\/clubs\/new$/);
     await page.getByRole('button', { name: '登录并创建', exact: true }).waitFor(); await screenshot(page, 'web-guest-create'); await context.close();
+  });
+  await check('A failed directory request keeps memberships visible and retries the submitted filter', async () => {
+    const context = await browser.newContext({ viewport: { width: 320, height: 568 } });
+    await context.addInitScript(token => localStorage.setItem('marathon_token', token), other.token);
+    const page = await context.newPage();
+    await page.goto(base + '/clubs');
+    await page.locator('.my-club').first().waitFor();
+    let retries = 0;
+    await page.route('**/api/clubs/directory?*', route => {
+      const url = new URL(route.request().url());
+      if (url.searchParams.get('city') !== '北京' || ++retries > 1) return route.continue();
+      return route.fulfill({ status: 503, contentType: 'application/json', body: '{"error":"目录暂不可用"}' });
+    });
+    await page.getByRole('textbox', { name: '筛选活动城市', exact: true }).fill('北京');
+    await page.getByRole('button', { name: '应用城市筛选', exact: true }).click();
+    const problem = page.locator('.directory-message');
+    assert.match(await problem.innerText(), /目录暂不可用/);
+    assert.ok(await page.locator('.my-club').count() > 0);
+    await page.getByRole('textbox', { name: '筛选活动城市', exact: true }).fill('杭州');
+    assert.match(await page.locator('.directory-context').innerText(), /北京/);
+    await problem.getByRole('button', { name: '重新加载', exact: true }).click();
+    await page.waitForFunction(() => !document.querySelector('.directory-message.error'));
+    assert.equal(retries, 2);
+    await context.close();
   });
   assert.deepEqual(report.errors, []); report.passed = true;
 }

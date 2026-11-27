@@ -13,6 +13,7 @@ function detailFixture(race, auth = true, now) {
   const app = { globalData: { token: auth ? 'runner-a' : '', baseUrl: 'https://runner.example' } };
   const requests = [], scrolls = [], clipboard = [], previews = [], storage = {}, navigation = [];
   const data = { race, statuses, following: false, myStatus: '', sharedClubIds: [], myResults: [], clubs: [], cards: [] };
+  const news = { failing: false, items: [] };
   const file = path.join(root, 'miniprogram/pages/race/race.js'), localRequire = createRequire(file);
   const FixtureDate = now ? class extends Date {
     constructor(...args) { super(...(args.length ? args : [now])); }
@@ -30,7 +31,7 @@ function detailFixture(race, auth = true, now) {
     require(id) {
       if (id === '../../utils/request') return { ready: () => !!app.globalData.token, request(url, method = 'GET', body) {
         requests.push({ url, method, body });
-        if (url.endsWith('/news')) return Promise.resolve({ news: [] });
+        if (url.endsWith('/news')) return news.failing ? Promise.reject(Error('赛事资讯暂时无法加载')) : Promise.resolve({ news: news.items });
         if (url.endsWith('/outings')) return Promise.resolve({ outings: [] });
         return Promise.resolve(data);
       } };
@@ -38,7 +39,35 @@ function detailFixture(race, auth = true, now) {
     }
   }, { filename: file });
   const page = { ...definition, data: JSON.parse(JSON.stringify(definition.data)), setData(patch, done) { Object.assign(this.data, patch); if (done) done(); } };
-  return { page, app, data, requests, scrolls, clipboard, previews, storage, navigation };
+  return { page, app, data, requests, scrolls, clipboard, previews, storage, navigation, news };
+}
+async function checkPersonalResultAndFeed() {
+  const f = detailFixture({ ...baseRace, distances: ['full', 'half'], distanceLabels: ['全程马拉松', '半程马拉松'] });
+  f.data.myResults = [{ distance: 'full', clock: '03:29:59', story: '全马独立记录' }, { distance: '10k', distanceLabel: '10公里', clock: '00:49:59' }];
+  f.page.onLoad({ id: baseRace.id, tab: 'result' });
+  assert.equal(await f.page.load(), true);
+  assert.equal(f.page.data.clock, '03:29:59');
+  f.page.pickDistance({ currentTarget: { dataset: { distance: 'half' } } });
+  assert.equal(f.page.data.clock, '');
+  assert.equal(f.page.data.story, '');
+  const failures = [];
+  await f.page.load();
+  if (f.page.data.distance !== 'half' || f.page.data.clock) failures.push('Refreshing must keep the selected empty project');
+  f.news.failing = true;
+  f.page.pickTab({ currentTarget: { dataset: { id: 'news' } } });
+  if (await f.page.load() !== true || !f.page.data.newsError) failures.push('News failure stays in the news tab and does not fail the race load');
+  if (typeof f.page.loadNews !== 'function') failures.push('The news tab must expose its own retry');
+  if (!f.page.data.distanceOptions.some(option => option.key === '10k')) failures.push('Previously recorded projects stay accessible when no longer published');
+  assert.deepEqual(failures, []);
+  f.news.failing = false;
+  f.news.items = [{ id: 91, title: '本届交通安排' }];
+  const prior = f.requests.length;
+  await f.page.loadNews();
+  assert.deepEqual(f.requests.slice(prior).map(row => row.url), ['/races/' + baseRace.id + '/news']);
+  assert.equal(f.page.data.newsError, '');
+  assert.equal(f.page.data.articles[0].title, '本届交通安排');
+  assert.equal(f.page.data.tab, 'news');
+  return 'Results preserve the selected project and news failures retry independently';
 }
 async function checkRaceService() {
   const now = '2026-11-17T12:00:00+08:00';
@@ -235,6 +264,7 @@ async function checkPublicDetailBody() {
 }
 async function main() {
   const checks = [];
+  checks.push(await checkPersonalResultAndFeed());
   const links = ['signup', 'draw', 'bib', 'result'].map(key => ({ key, url: 'https://official.example/' + key, label: key }));
   const cases = [
     { label: 'registration', extra: { raceDate: day(30), regStatus: '报名中', drawAt: day(10), bibAt: day(20) }, key: 'signup' },

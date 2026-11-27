@@ -85,13 +85,14 @@ async function main() {
     assert.equal(f.requests.find(r => r[1] === 'POST')[2].applicationId, 12);
     f.page.onUnload();
   });
-  await check('创建入口位于我的跑团和发现跑团之间，目录不再包含创建表单', async () => {
+  await check('跑团服务卡提供独立创建入口，目录不包含创建表单', async () => {
     const f = fixture('clubs');
     f.page.openCreate();
     assert.deepEqual(f.navigation, ['/pages/club-create/club-create']);
     const markup = fs.readFileSync(path.join(ROOT, 'miniprogram/pages/clubs/clubs.wxml'), 'utf8');
-    assert.ok(markup.indexOf('class="my-clubs"') < markup.indexOf('id="create-club"'));
-    assert.ok(markup.indexOf('id="create-club"') < markup.indexOf('id="discover-clubs"'));
+    const service = markup.indexOf('class="club-services"'), create = markup.indexOf('id="create-club"');
+    assert.ok(service >= 0 && service < create && create < markup.indexOf('id="my-run-clubs"'));
+    assert.ok(create < markup.indexOf('<view id="discover-clubs"'));
     assert.doesNotMatch(markup, /create-form|bindtap="create"|createOpen|textarea/);
     const app = JSON.parse(fs.readFileSync(path.join(ROOT, 'miniprogram/app.json'), 'utf8'));
     assert.ok(app.pages.includes('pages/club-create/club-create'));

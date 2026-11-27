@@ -429,7 +429,9 @@ async function main() {
   });
   await check("Mine top-right settings preserve the previous tab and contain the only signed-in logout; real storage and private drafts clear", async () => {
     const markup = fs.readFileSync(path.join(mini, "pages/mine/mine.wxml"), "utf8");
-    const signedInCard = markup.slice(markup.indexOf('<view wx:if="{{nickname}}" class="surface account-hero">'), markup.indexOf('<view wx:else class="surface guest-hero">'));
+    const signedInCard = markup.slice(markup.indexOf('class="surface account-hero identity-summary"'), markup.indexOf('class="surface guest-hero identity-summary"'));
+    assert.match(signedInCard, /class="member-services"[\s\S]*?class="account-stats"/);
+    assert.match(markup, /class="results-head"[^>]*>[^\n]*?完赛概览[^\n]*?url="\/pages\/history\/history">我的跑史/);
     assert.ok(!signedInCard.includes('bindtap="logout"'), "Account card stays focused on the runner");
     assert.match(markup.split('<view class="mine-page')[0], /class="header-settings(?: nav-settings)?" bindtap="openSettings" aria-label="设置"/);
     const settings = markup.slice(markup.indexOf(`<view wx:if="{{mainTab === 'settings'}}"`), markup.indexOf('  <block wx:else>'));

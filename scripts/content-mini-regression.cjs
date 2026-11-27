@@ -89,6 +89,31 @@ async function main() {
     f.page.switchTab(event({ tab: 'pacer' })); await settle(); assert.match(f.requests().at(-1).url, /\/content\/profiles\?type=pacer/); assert.equal(f.page.data.isProfile, true);
     f.page.switchTab(event({ tab: 'race' })); await settle(); assert.match(f.requests().at(-1).url, /^\/news\?/); assert.equal(f.page.data.rows[0].id, race.id); assert.equal(f.page.data.isProfile, false);
   });
+  await check('Race news retry keeps the submitted search when a different draft was typed', async () => {
+    const f = fixture(); f.page.onLoad({ tab: 'race' }); f.page.onShow(); await settle();
+    f.page.onQuery(event({}, '  测试马拉松&  ')); f.page.search(); await settle();
+    assert.equal(f.page.data.rows[0].raceName, race.raceName);
+    f.setReply(() => Promise.reject(new Error('503')));
+    await f.page.load();
+    assert.match(f.page.data.message, /稍后再试/);
+    f.page.onQuery(event({}, '尚未提交'));
+    f.setReply(() => Promise.resolve({ news: [race], total: 1, page: 1, pages: 1 }));
+    await f.page.load();
+    assert.equal(f.page.data.message, '');
+    assert.equal(new URL(f.requests().at(-1).url, 'https://fixture.example').searchParams.get('q'), '测试马拉松&');
+    f.page.clearQuery(); await settle();
+    assert.equal(f.page.data.query, ''); assert.equal(f.page.data.draftQuery, '');
+    assert.match(f.requests().at(-1).url, /^\/news\?/);
+    assert.equal(new URL(f.requests().at(-1).url, 'https://fixture.example').searchParams.get('q'), '');
+  });
+  await check('Race news shows its associated race and separates the service card from the feed', async () => {
+    const template = fs.readFileSync(path.join(mini, 'pages/news/news.wxml'), 'utf8');
+    const detail = fs.readFileSync(path.join(mini, 'pages/news/detail.wxml'), 'utf8');
+    assert.match(template, /class="journal-service"[\s\S]*class="journal-tabs"[\s\S]*class="journal-search"/);
+    assert.match(template, /class="journal-query"[\s\S]*\{\{query\}\}[\s\S]*bindtap="clearQuery"/);
+    assert.match(template, /class="row-meta"[\s\S]*item\.raceName/);
+    assert.match(detail, /class="race-news-service"[\s\S]*\/pages\/race\/race\?id=\{\{item\.raceId\}\}&amp;tab=news/);
+  });
   await check('Featured entries use real profile photos and target times, cache previews and retain readable image fallbacks', async () => {
     const f = fixture();
     f.setReply(url => {
@@ -121,6 +146,9 @@ async function main() {
   });
   await check('Male and female filters and Unicode search are encoded', async () => {
     const f = fixture(); f.page.onLoad({ tab: 'athlete' }); f.page.onShow(); await settle(); assert.equal(f.page.data.rows[0].gender, 'men');
+    assert.equal(f.page.data.notesOpen, false);
+    f.page.toggleNotes(); assert.equal(f.page.data.notesOpen, true);
+    assert.match(f.page.data.rankingNotice, /历史个人最佳/);
     f.page.setGender(event({ gender: 'women' })); await settle(); assert.equal(f.page.data.rows[0].gender, 'women'); assert.match(f.requests().at(-1).url, /gender=women/);
     f.page.onQuery(event({}, '  张 德顺&  ')); f.page.search(); await settle(); const url = new URL(f.requests().at(-1).url, 'https://fixture.example');
     assert.equal(url.searchParams.get('q'), '张 德顺&');

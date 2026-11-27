@@ -1,6 +1,6 @@
 /* Runs inside a browser context. Keep this function self-contained so that
  * Playwright can serialize it for both Web and Mini source mirrors. */
-function inspectUiPalette() {
+function inspectUiPalette(heroSelector = '.event-hero, .activity-page .hero') {
   const parse = value => {
     const match = String(value).match(/rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:\s*[,/]\s*([\d.]+))?\s*\)/);
     return match ? [Number(match[1]), Number(match[2]), Number(match[3]), match[4] === undefined ? 1 : Number(match[4])] : null;
@@ -21,7 +21,7 @@ function inspectUiPalette() {
     return composite(color, effective(element.parentElement));
   };
   const visible = element => { const rect = element.getBoundingClientRect(), style = getComputedStyle(element); return rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none'; };
-  const hero = document.querySelector('.event-hero, .activity-page .hero');
+  const hero = document.querySelector(heroSelector);
   let activityHero = null;
   if (hero && visible(hero)) {
     const style = getComputedStyle(hero), under = effective(hero.parentElement), background = effective(hero);

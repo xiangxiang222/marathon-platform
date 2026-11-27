@@ -23,10 +23,11 @@
         </div>
         <button class="header-settings identity-settings" type="button" aria-label="设置" @click="openSettings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.7 2.1-1.9 1.1L4.2 6l-2 3.5 1.3 1.8v2.2L2.2 15l2 3.5 2.2-.2 1.9 1.1L9 21h4l.7-1.6 1.9-1.1 2.2.2 2-3.5-1.3-1.5v-2.2l1.3-1.8-2-3.5-2.2.2-1.9-1.1L13 3Z"/><circle cx="11" cy="12" r="3"/></svg></button>
       </div>
-      <div class="account-stats"><button type="button" @click="section = 'plans'"><b>{{ plans.length }}</b><span>已标记赛事</span></button><button type="button" @click="section = 'results'"><b>{{ finished }}</b><span>已完赛</span></button><router-link to="/clubs"><b>{{ clubs.length }}</b><span>已加入跑团</span></router-link></div>
+      <div class="member-services"><h3>我的跑步记录</h3><div class="account-stats"><button type="button" @click="section = 'plans'"><b>{{ plans.length }}</b><span>已标记赛事</span></button><button type="button" @click="section = 'results'"><b>{{ finished }}</b><span>已完赛</span></button><router-link to="/clubs"><b>{{ clubs.length }}</b><span>已加入跑团</span></router-link></div></div>
     </section>
     <section v-else class="account-hero guest-hero identity-summary">
-      <div class="guest-actions guest-login-row"><button class="primary hero-login" type="button" :aria-expanded="authOpen" @click="openAuth">{{ authOpen ? '收起登录' : '登录 / 注册' }}</button><button class="header-settings identity-settings" type="button" aria-label="设置" @click="openSettings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.7 2.1-1.9 1.1L4.2 6l-2 3.5 1.3 1.8v2.2L2.2 15l2 3.5 2.2-.2 1.9 1.1L9 21h4l.7-1.6 1.9-1.1 2.2.2 2-3.5-1.3-1.5v-2.2l1.3-1.8-2-3.5-2.2.2-1.9-1.1L13 3Z"/><circle cx="11" cy="12" r="3"/></svg></button></div>
+      <div class="guest-scene"><div><h2>欢迎来到赛历</h2><p>登录后查看参赛计划和运动记录</p></div><button class="header-settings identity-settings" type="button" aria-label="设置" @click="openSettings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.7 2.1-1.9 1.1L4.2 6l-2 3.5 1.3 1.8v2.2L2.2 15l2 3.5 2.2-.2 1.9 1.1L9 21h4l.7-1.6 1.9-1.1 2.2.2 2-3.5-1.3-1.5v-2.2l1.3-1.8-2-3.5-2.2.2-1.9-1.1L13 3Z"/><circle cx="11" cy="12" r="3"/></svg></button></div>
+      <div class="guest-actions guest-login-row"><button class="primary hero-login" type="button" :aria-expanded="authOpen" @click="openAuth">{{ authOpen ? '收起登录' : '登录 / 注册' }}</button></div>
     </section>
     <section v-if="!nickname && authOpen" class="sheet auth">
       <nav class="subtabs"><button type="button" :class="{ on: authTab === 'login' }" @click="setTab('login')">账号登录</button><button type="button" :class="{ on: authTab === 'register' }" @click="setTab('register')">注册账号</button></nav>
@@ -40,9 +41,9 @@
         <button class="primary" type="submit">{{ authTab === 'login' ? '登录' : '注册' }}</button>
       </form><p v-if="authTab === 'login'" class="hint">旧账号未设置密码或无法登录？请联系平台管理员核验身份后恢复账号。</p><p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p>
     </section>
-    <nav class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'overview' }" @click="section = 'overview'">总览</button><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
+    <nav v-if="nickname" class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'overview' }" @click="section = 'overview'">总览</button><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
     <RunnerDashboard v-if="section === 'overview' && nickname" :data="runnerData" :plans="plans" :loading="runnerLoading" :error="runnerError" @retry="loadRunner"><template #career-actions><div class="compact-poster"><span>{{ posterAvailable ? '已收录自己的完赛成绩' : '记录完赛后可制作成绩海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><button v-else type="button" @click="section = 'results'">去记录成绩 ›</button></div></template></RunnerDashboard>
-    <section v-else-if="section === 'overview'" class="sheet empty-state"><h3>登录，查看自己的运动档案</h3><p>跑量、参赛计划与完赛成绩集中管理。</p><router-link to="/">去发现下一场比赛 ›</router-link></section>
+    <nav v-else-if="section === 'overview'" class="quick-links guest-public-links" aria-label="公开服务"><router-link v-for="item in quickLinks" :key="item.to" :to="item.to"><img :src="item.icon" alt="" /><span>{{ item.label }}</span></router-link></nav>
     <template v-else-if="section === 'plans'">
       <nav class="subtabs plan-view-tabs" aria-label="我的赛事分类"><button type="button" :class="{ on: planView === 'plans' }" @click="planView = 'plans'">参赛计划 {{ plans.length }}</button><button type="button" :class="{ on: planView === 'followed' }" @click="planView = 'followed'">关注的比赛 {{ followedRaces.length }}</button></nav>
       <p class="plan-privacy-hint">关注仅自己可见；参赛状态可在赛事详情中选择同步跑团。</p>
@@ -55,7 +56,10 @@
       <section v-else class="sheet followed-races"><p v-if="followedRaces.length" class="hint">报名开始、截止等近期节点，可在本站的赛事提醒中查看。</p><RaceCard v-for="race in followedRaces" :key="race.id" :race="{ ...race, following: true }" @follow="value => { if (!value) { followedRaces = followedRaces.filter(item => item.id !== race.id); load(); } }" /><div v-if="!followedRaces.length" class="empty-state"><h3>先关注，慢慢选下一场</h3><p>关注后可查看站内节点提醒，参赛计划按自己的进度单独记录。</p><router-link to="/">去看赛事 ›</router-link></div></section>
     </template>
     <template v-else-if="section === 'results'">
-      <section class="sheet career-summary"><div><span>完赛场数</span><b>{{ nickname ? finished : '—' }}<small> 场</small></b></div><div><span>半马最好成绩</span><b class="clock">{{ career.pb.half || '—' }}</b></div><div><span>全马最好成绩</span><b class="clock">{{ career.pb.full || '—' }}</b></div><div v-if="nickname" class="compact-poster"><span>{{ posterAvailable ? '把自己的成绩，留作纪念' : '在赛事详情页记下完赛成绩，即可制作海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><router-link v-else to="/">去看赛事 ›</router-link></div></section>
+      <section class="sheet results-overview" aria-labelledby="results-overview-title">
+        <header class="results-head"><h3 id="results-overview-title">完赛概览</h3><router-link to="/history">我的跑史 <span aria-hidden="true">›</span></router-link></header>
+        <div class="career-summary"><div><span>完赛场数</span><b>{{ finished }}<small> 场</small></b></div><div><span>半马最好成绩</span><b class="clock">{{ career.pb.half || '—' }}</b></div><div><span>全马最好成绩</span><b class="clock">{{ career.pb.full || '—' }}</b></div><div class="compact-poster"><span>{{ posterAvailable ? '把自己的成绩，留作纪念' : '在赛事详情页记下完赛成绩，即可制作海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><router-link v-else to="/">去看赛事 ›</router-link></div></div>
+      </section>
       <nav class="subtabs result-tabs"><button type="button" :class="{ on: tab === 'honor' }" @click="tab = 'honor'">成绩</button><button type="button" :class="{ on: tab === 'photo' }" @click="tab = 'photo'">证书影像</button><button type="button" :class="{ on: tab === 'time' }" @click="tab = 'time'">赛事足迹</button></nav>
       <section v-if="tab === 'honor'" class="sheet">
         <div v-if="years.length" class="chips"><button type="button" :class="{ on: mapYear === '' }" @click="mapYear = ''">全部</button><button v-for="year in years" :key="year" type="button" :class="{ on: mapYear === year }" @click="mapYear = year">{{ year }}</button></div>
@@ -595,17 +599,28 @@ h3 { margin: 0; font-size:16px; line-height: 24px; font-weight: 600; }.hint, .em
 <style scoped src="../personal-ui.css"></style>
 
 <style scoped>
-/* Root identity starts with account information and tools. */
-.mine .identity-summary{margin:0 -16px 12px;padding:0 16px;border-radius:0;background:linear-gradient(115deg,#fff5f6,#fff 85%)}
-.mine .identity-summary .identity-panel{display:flex;align-items:center;gap:12px;padding:14px 0 12px}
-.mine .identity-summary .identity-copy{flex:1;min-width:0}
-.mine .identity-summary .who-top{gap:12px}
-.mine .identity-summary .nick{font-size:20px;line-height:1.35}
-.mine .identity-settings{display:flex;flex:none;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;padding:0;color:#555;background:transparent;border:0;border-radius:50%}
-.mine .identity-summary .account-stats{padding:10px 0 14px;background:transparent}
-.mine .identity-summary .account-stats b{font-size:22px}
-.mine .identity-summary .account-stats>*{border-right:0}
-.mine .guest-login-row{display:flex;align-items:center;gap:12px;padding:18px 0}
-.mine .guest-login-row .hero-login{flex:1;width:auto;margin:0}
-@media(max-width:350px){.mine .identity-summary .who-top{gap:10px}.mine .identity-summary .nick{font-size:18px}}
+.mine { --member-ink: #2d2442; --member-accent: #55388c; --member-tint: #f3eefc; --member-line: #eae3f1; }
+.mine .identity-summary { margin: 0 0 12px; padding: 0; border: 0; border-radius: 0; background: transparent; overflow: visible; }
+.mine .identity-panel, .mine .guest-scene { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 -16px; padding: 25px 20px 53px; background: radial-gradient(ellipse at 86% 0%,#d4c4f1,transparent 72%),linear-gradient(#e8def9,#f8f5fc); color: var(--member-ink); }
+.mine .identity-summary .identity-copy { flex: 1; min-width: 0; }
+.mine .identity-summary .who-top { gap: 12px; }
+.mine .identity-summary .nick, .mine .guest-scene h2 { margin: 0; color: var(--member-accent); font-size: 22px; line-height: 1.4; overflow-wrap: anywhere; }
+.mine .identity-summary .club-line, .mine .guest-scene p { margin: 5px 0 0; color: #544762; font-size: 13px; line-height: 1.6; }
+.mine .identity-panel .face { border: 2px solid #9979c6; background: #f8f3ff; color: var(--member-accent); }
+.mine .identity-settings { display: grid; place-items: center; align-self: flex-start; flex: none; width: 44px; height: 44px; padding: 0; color: var(--member-accent); background: #ffffff80; border: 1px solid #c7b1e4; border-radius: 50%; }
+.mine .member-services, .mine .guest-login-row { position: relative; margin-top: -27px; padding: 14px; border: 1px solid var(--member-line); border-radius: 20px; background: #fff; box-shadow: 0 8px 22px #30244114; }
+.mine .member-services h3 { margin: 0 0 8px; color: var(--member-ink); font-size: 17px; }
+.mine .identity-summary .account-stats { margin: 0; padding: 7px 0 0; border-top: 1px solid var(--member-line); background: transparent; }
+.mine .identity-summary .account-stats b { font-size: 22px; color: var(--member-accent); }
+.mine .identity-summary .account-stats>* { border-right: 0; }
+.mine .guest-login-row .hero-login { margin: 0; border-radius: 24px; background: linear-gradient(100deg,#7453b5,var(--member-accent)); color: #fff; }
+.mine .main-tabs { gap: 3px; padding: 4px; border: 0; border-radius: 13px; background: var(--member-tint); }
+.mine .main-tabs button { padding: 2px 3px; color: #60586a; font-size: 13px; }
+.mine .main-tabs button.on { background: #fff; color: var(--member-accent); }
+.mine .guest-public-links { border-color: var(--member-line); border-radius: 16px; }
+.mine .results-overview { border-color: var(--member-line); border-radius: 18px; }
+.mine .results-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--member-line); }
+.mine .results-head a { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; color: var(--member-accent); font-size: 13px; }
+.mine .results-overview .career-summary { padding: 12px 0 0; }
+@media(max-width:350px){.mine .identity-panel,.mine .guest-scene{margin-inline:-12px;padding-inline:15px}.mine .identity-summary .who-top{gap:9px}.mine .identity-summary .nick,.mine .guest-scene h2{font-size:20px}}
 </style>

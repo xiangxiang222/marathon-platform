@@ -163,6 +163,29 @@ async function main() {
   const cal = fixture('calendar'); cal.page.year = 2027; cal.page.month = 3; cal.page.picked = race.raceDate;
   cal.page.paint([{ ...race, following: true, myStatus: '中签' }]);
   assert.equal(cal.page.data.dayRaces[0].following, true); assert.equal(cal.page.data.dayRaces[0].myStatus, '中签');
+  let calendarUnavailable = false;
+  const calendar = fixture('calendar', () => {
+    if (calendarUnavailable) throw Error('当月赛历无法加载');
+    return { races: [{ ...race, myStatus: '中签' }] };
+  });
+  Object.assign(calendar.page, { year: 2027, month: 3, picked: race.raceDate });
+  calendar.page.load(); await settle();
+  assert.equal(calendar.page.data.dayRaces[0].myStatus, '中签', 'calendar data loaded before the transition');
+  calendarUnavailable = true;
+  calendar.page.next(); await settle();
+  const calendarFailures = [];
+  if (calendar.page.data.dayRaces.length) calendarFailures.push('An unavailable month must hide the previous selected-day races');
+  if (typeof calendar.page.goToday !== 'function') calendarFailures.push('There must be a return-to-today action');
+  const calendarMarkup = fs.readFileSync(path.join(root, 'miniprogram/pages/calendar/calendar.wxml'), 'utf8');
+  if (!/bindtap="load"[\s\S]{0,70}重试/.test(calendarMarkup)) calendarFailures.push('An unsuccessful month can be retried without changing the month');
+  assert.deepEqual(calendarFailures, []);
+  calendarUnavailable = false;
+  await calendar.page.load(); await settle();
+  assert.equal(calendar.requests.at(-1).url, '/races?status=all&month=2027-04');
+  calendar.page.goToday(); await settle();
+  const currentDay = new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
+  assert.equal(calendar.page.picked, currentDay);
+  assert.ok(calendar.requests.at(-1).url.endsWith(currentDay.slice(0, 7)));
   const markup = fs.readFileSync(path.join(root, 'miniprogram/pages/race/race.wxml'), 'utf8');
   assert.match(markup, /仅自己可见/); assert.doesNotMatch(markup, /供自己与跑团留存/); assert.match(markup, /活动需单独报名/);
   for (const id of ['news', 'result', 'signup']) {

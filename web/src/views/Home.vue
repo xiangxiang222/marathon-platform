@@ -453,7 +453,7 @@ onUnmounted(() => { loadSeq++; reminderRequest++; window.removeEventListener('ra
 
 <style scoped>
 .home-page {
-  --finder-purple: #50378c;
+  --finder-purple: #55388c;
   --finder-tint: #f1ecfa;
   --finder-muted: #625a6d;
   padding-bottom: 16px;
@@ -482,24 +482,26 @@ onUnmounted(() => { loadSeq++; reminderRequest++; window.removeEventListener('ra
 .catalog-error button { min-width: 44px; min-height: 44px; color: var(--finder-purple); font-size: 14px; }
 @media (min-width: 600px) { .catalog-list { gap: 12px; }.catalog-race { padding-top: 16px; }.catalog-landmark { width: 96px; height: 76px; } }
 @media (prefers-reduced-motion: reduce) { .catalog-race { transition: none; } }
-.home-top { background: #f5f3f7; }
+.home-top { background: #f7f6fa; }
 .home-brand {
   position: relative;
   isolation: isolate;
   padding: 24px 16px 12px;
-  background: #f4f2f7;
+  background: linear-gradient(160deg, #e8def9, #dcd0f3 42%, #f7f6fa 76%) 0 0 / 100% 290px no-repeat #f7f6fa;
+  color: #22202a;
 }
 .home-brand::before {
   position: absolute;
   z-index: -1;
   inset: 0 0 auto;
   height: 258px;
-  background: linear-gradient(170deg, #171a37fa, #302a4eb5 43%, #60527132 78%, #f4f2f7 100%),
-    url('/images/race-archive-art/beijing-cover.svg') 62% center / cover no-repeat #34294b;
+  background: url('/images/race-archive-art/beijing-cover.svg') 70% center / cover no-repeat;
+  mask-image: linear-gradient(150deg, transparent 24%, black 52%, transparent 94%);
+  opacity: .17;
   content: '';
 }
-.home-page-title { margin: 14px 4px 0; color: #fff; font-size: 32px; font-weight: 650; line-height: 1.2; }
-.home-calendar-link { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-left: 4px; color: #fff; font-size: 13px; }
+.home-page-title { margin: 14px 4px 0; color: inherit; font-size: 32px; font-weight: 650; line-height: 1.2; }
+.home-calendar-link { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-left: 4px; color: #55388c; font-size: 13px; }
 .home-calendar-link svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .race-finder {
   margin-top: 28px;
@@ -534,7 +536,7 @@ onUnmounted(() => { loadSeq++; reminderRequest++; window.removeEventListener('ra
   min-height: 49px;
   padding: 9px 16px;
   border-radius: 28px;
-  background: linear-gradient(110deg, #7155ae, var(--finder-purple));
+  background: linear-gradient(110deg, #7453b5, var(--finder-purple));
   color: #fff;
   font-size: 16px;
   font-weight: 650;

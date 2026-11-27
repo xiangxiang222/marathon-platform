@@ -50,10 +50,10 @@ const active = (item) => item.to === "/" ? route.path === "/" : route.path.start
   align-items: center;
   justify-content: center;
   gap: 4px;
-  color: var(--muted);
+  color: #514c58;
   font-size: 12px;
   line-height: 1.25;
 }
-.item.on { color: var(--accent); font-weight: 600; }
+.item.on { color: #55388c; font-weight: 600; }
 .glyph { display: block; width: 24px; height: 24px; }
 </style>

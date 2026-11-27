@@ -22,10 +22,10 @@ Page({
     cells: [],
     dayRaces: [],
     pickedLabel: "",
-    dayNum: "",
     weekday: "",
     ready: false,
     message: "",
+    posterError: "",
     posterPath: ""
   },
   onLoad() {
@@ -53,6 +53,15 @@ Page({
   next() {
     this.shift(1);
   },
+  goToday() {
+    const now = cstParts(), sameMonth = this.year === now.y && this.month === now.m;
+    this.picked = iso(now);
+    if (sameMonth && !this.data.message) return this.paint(this.data.ready ? this.races : [], this.data.ready);
+    this.year = now.y;
+    this.month = now.m;
+    this.setData({ year: now.y, month: now.m });
+    return this.load();
+  },
   shift(delta) {
     const next = new Date(Date.UTC(this.year, this.month - 1 + delta, 1));
     this.year = next.getUTCFullYear();
@@ -67,21 +76,22 @@ Page({
     const key = this.year + "-" + String(this.month).padStart(2, "0");
     if (!date.startsWith(key)) return;
     this.picked = date;
-    this.paint(this.races || []);
+    this.paint(this.data.ready ? this.races : [], this.data.ready);
   },
   load() {
     const seq = this._loadSeq = (this._loadSeq || 0) + 1, token = accountToken();
     const key = this.year + "-" + String(this.month).padStart(2, "0");
-    this.setData({ ready: false, message: "" });
-    request("/races?status=all&month=" + key)
+    this.setData({ message: "" });
+    this.paint([], false);
+    return request("/races?status=all&month=" + key)
       .then((data) => {
         if (this._disposed || seq !== this._loadSeq || token !== accountToken() || key !== this.year + "-" + String(this.month).padStart(2, "0")) return;
         this.races = data.races || [];
         this.paint(this.races);
       })
-      .catch((err) => { if (!this._disposed && seq === this._loadSeq && token === accountToken()) this.setData({ ready: true, message: err.message }); });
+      .catch((err) => { if (!this._disposed && seq === this._loadSeq && token === accountToken()) this.setData({ message: err.message || "赛事加载失败" }); });
   },
-  paint(races) {
+  paint(races = [], ready = true) {
     const first = new Date(Date.UTC(this.year, this.month - 1, 1));
     const start = new Date(first);
     start.setUTCDate(1 - first.getUTCDay());
@@ -107,7 +117,7 @@ Page({
         picked: date === this.picked,
         mark: date === todayIso ? "今" : String(d),
         lunar: lunarLabel(y, m, d),
-        countText: count ? count + "场赛事" : ""
+        countText: count ? count + "场" : ""
       });
     }
     const dayRaces = races
@@ -124,16 +134,17 @@ Page({
     this.setData({
       cells,
       dayRaces,
-      ready: true,
-      dayNum: facts.day,
+      ready, posterError: "",
       weekday: facts.weekday,
-      pickedLabel: Number(parts[1]) + "月" + Number(parts[2]) + "日 · " + dayRaces.length + "场"
+      pickedLabel: Number(parts[1]) + "月" + Number(parts[2]) + "日"
     });
   },
   makePoster() {
-    const races = (this.races || []).filter((race) => race.raceDate === this.picked);
+    if (!this.data.ready) return;
+    const date = this.picked;
+    const races = (this.races || []).filter((race) => race.raceDate === date);
     if (!races.length) return;
-    const parts = this.picked.split("-").map(Number);
+    const parts = date.split("-").map(Number);
     const lunar = lunarLabel(parts[0], parts[1], parts[2]);
     this.createSelectorQuery()
       .select("#day-poster")
@@ -141,15 +152,15 @@ Page({
       .exec((res) => {
         const canvas = res && res[0] && res[0].node;
         if (!canvas) {
-          this.setData({ message: "这张图没有生成" });
+          this.setData({ posterError: "这张图没有生成" });
           return;
         }
-        renderDayPoster(canvas, { date: this.picked, lunar, races });
+        renderDayPoster(canvas, { date, lunar, races });
         wx.canvasToTempFilePath({
           canvas,
           fileType: "png",
-          success: (file) => this.setData({ posterPath: file.tempFilePath, message: "" }),
-          fail: () => this.setData({ message: "这张图没有生成" })
+          success: (file) => { if (date === this.picked) this.setData({ posterPath: file.tempFilePath, posterError: "" }); },
+          fail: () => { if (date === this.picked) this.setData({ posterError: "这张图没有生成" }); }
         });
       });
   },

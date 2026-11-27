@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const { inspectUiPalette } = require('./ui-palette-metrics.cjs');
 const root = path.resolve(__dirname, '..');
 const helper = require('../miniprogram/utils/content');
 const guide = require('../miniprogram/utils/guide-md');
@@ -17,6 +18,7 @@ const fixtures = {
 };
 const meta = { asOf: '2026-11-11', rankingNotice: '按合成的中国籍全马历史个人最佳快照展示，包含历代选手，非现役实力排名。' };
 const pacerMeta = { rankingNotice: '按公开带跑经历收录，顺序不代表全国排名；此处均为版式验收合成人物。' };
+const race = { id: 912, title: '【合成展示】超长赛事标题与城市马拉松领物、检录和赛道调整的完整资讯', summary: '用于检查长标题和赛事关联的版式。', body: '这是用于版式验收的旧资讯正文。', raceId: 'fixture-race', raceName: '合成超长赛事名称 · 城市马拉松暨社区健康跑', publishedAt: '2026-11-02' };
 function createPage(pageName, scenario) {
   let definition, unavailable = false;
   const requests = [];
@@ -36,6 +38,8 @@ function createPage(pageName, scenario) {
     }
     if (parsed.pathname === '/content/articles') return Promise.resolve({ articles: clone(fixtures.articles), page: 1, pages: 1, total: fixtures.articles.length });
     if (parsed.pathname.startsWith('/content/articles/')) return Promise.resolve({ article: clone(fixtures.articles[0]) });
+    if (parsed.pathname === '/news') return Promise.resolve({ news: [clone(race)], page: 1, pages: 1, total: 1 });
+    if (parsed.pathname === '/news/912') return Promise.resolve({ news: clone(race) });
     return Promise.reject(new Error('Unexpected synthetic fixture request ' + url));
   };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'miniprogram/pages/news', pageName + '.js'), 'utf8'), {
@@ -53,33 +57,40 @@ function createPage(pageName, scenario) {
 const settle = async () => { await Promise.resolve(); await Promise.resolve(); await new Promise(resolve => setImmediate(resolve)); };
 module.exports = {
   cases: [
-    ...['base', 'athlete-men', 'athlete-women', 'pacer', 'unavailable'].map(scenario => ({ route: 'pages/news/news', scenario })),
-    ...['base', 'athlete-detail', 'pacer-detail', 'unavailable-detail'].map(scenario => ({ route: 'pages/news/detail', scenario }))
+    ...['base', 'athlete-men', 'athlete-women', 'pacer', 'race', 'race-query', 'unavailable'].map(scenario => ({ route: 'pages/news/news', scenario })),
+    ...['base', 'athlete-detail', 'pacer-detail', 'race-detail', 'unavailable-detail'].map(scenario => ({ route: 'pages/news/detail', scenario }))
   ],
   async prepare(route, initialData, scenario) {
     const pageName = route.endsWith('/detail') ? 'detail' : 'news';
     const f = createPage(pageName, scenario), page = f.page;
     if (pageName === 'news') {
-      const tab = scenario.startsWith('athlete') || scenario === 'unavailable' ? 'athlete' : scenario === 'pacer' ? 'pacer' : 'all';
+      const tab = scenario.startsWith('athlete') || scenario === 'unavailable' ? 'athlete' : scenario === 'pacer' ? 'pacer' : scenario.startsWith('race') ? 'race' : 'all';
       page.onLoad({ tab }); page.onShow(); await settle();
       if (scenario === 'athlete-women') { page.setGender({ currentTarget: { dataset: { gender: 'women' } } }); await settle(); }
+      if (scenario === 'race-query') { page.onQuery({ detail: { value: '赛事领物时间与起跑安排特别长的关键词'.repeat(3) } }); await page.search(); }
       if (scenario === 'unavailable') { f.fail(); await page.load(); }
     } else {
-      page.onLoad({ id: 'synthetic-detail', type: scenario.includes('athlete') || scenario.includes('pacer') ? 'profile' : 'article' }); await settle();
+      page.onLoad(scenario === 'race-detail' ? { id: '912', type: 'race' } : { id: 'synthetic-detail', type: scenario.includes('athlete') || scenario.includes('pacer') ? 'profile' : 'article' }); await settle();
       if (scenario === 'unavailable-detail') { f.fail(); await page.load(); }
     }
     return { data: page.data, components: {}, css: '' };
   },
   async audit({ page, route, scenario }) {
     const metrics = await page.evaluate(() => {
-      const controls = [...document.querySelectorAll('.journal-search button,.gender-tabs button,.journal-state button,.journal-shortcuts button')].map(el => ({ cls: el.className, height: el.getBoundingClientRect().height, width: el.getBoundingClientRect().width }));
+      const controls = [...document.querySelectorAll('.journal-search button,.journal-query button,.journal-tab,.gender-tabs button,.journal-state button,.journal-shortcuts button,.race-news-service')].map(el => ({ cls: el.className, height: el.getBoundingClientRect().height, width: el.getBoundingClientRect().width }));
       const first = document.querySelector('.journal-row'), filter = document.querySelector('.gender-tabs');
       return { firstRowBottom: first?.getBoundingClientRect().bottom, controls, filterCenters: filter ? [...filter.children].map(el => { const r = el.getBoundingClientRect(); return r.y + r.height / 2; }) : [], hasPromo: !!document.querySelector('.journal-features,.journal-footer'), text: document.body.innerText, noteCount: document.querySelectorAll('.ranking-note').length, countCount: document.querySelectorAll('.section-caption>span:nth-child(2)').length, state: document.querySelector('.journal-state')?.innerText };
     });
     const errors = [];
+    const heroSelector = route.endsWith('/news') ? '.journal-intro' : scenario === 'race-detail' ? '.race-news-heading' : '';
+    if (heroSelector) {
+      const { activityHero: hero } = await page.evaluate(inspectUiPalette, heroSelector);
+      if (!hero?.brightReadableSurface) errors.push('News hero needs a bright background and readable dark type: ' + JSON.stringify(hero));
+    }
     if (metrics.hasPromo) errors.push('Oversized promotional content must not return');
     if (route.endsWith('/news') && !scenario.includes('unavailable') && !(metrics.firstRowBottom < 700)) errors.push('First actual content must appear within the opening screen: ' + metrics.firstRowBottom);
     if (metrics.controls.some(x => x.height < 43.9 || x.width < 43.9)) errors.push('Interactive controls must provide at least 44px targets: ' + JSON.stringify(metrics.controls));
+    if (scenario.startsWith('race') && !metrics.text.includes(race.raceName)) errors.push('Recorded race context is visible on both the article and race feed');
     if (metrics.filterCenters.length && Math.max(...metrics.filterCenters) - Math.min(...metrics.filterCenters) > 3) errors.push('Male/female controls and PB label must remain on one row');
     if (scenario.includes('unavailable')) {
       if (/HTTP|404|管理员|0 位|Cannot GET/.test(metrics.text)) errors.push('Do not expose technical failures or misleading zero counts');
